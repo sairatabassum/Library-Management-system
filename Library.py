@@ -955,7 +955,7 @@ def home():
         title2 = Label(win1,text='New Password',font=('Arial',25,'bold'),fg='#B22222')
         title2.place(x=130,y=25)
 
-        l2 = Label(win1,text="User ID:",font=('veranda',10,'bold'))
+        l2 = Label(win1,text="User Name:",font=('veranda',10,'bold'))
         l2.place(x=60,y=100)
         by = Entry(win1,textvariable=si1,bd=1,font=('Arial',15,'bold'))
         by.place(x=180,y=100,height=25,width=200)
