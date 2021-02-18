@@ -881,6 +881,50 @@ def dashboard():
 
 def home():
 
+    def sign_up():
+
+
+        win1=Toplevel(win)
+        win1.title("Sign Up")
+        win1.geometry("500x450+400+150")
+        win1.resizable(False,False)
+
+
+        si1 = StringVar()
+        si2 = StringVar()
+        si3=StringVar()
+        si4=StringVar()
+
+        title2 = Label(win1,text='Sign Up',font=('Arial',25,'bold'),fg='#B22222')
+        title2.place(x=190,y=25)
+
+        l2 = Label(win1,text="User Name:",font=('veranda',10,'bold'))
+        l2.place(x=60,y=100)
+        by = Entry(win1,textvariable=si1,bd=1,font=('Arial',15,'bold'))
+        by.place(x=180,y=100,height=25,width=200)
+
+        l3 = Label(win1,text="Name:",font=('veranda',10,'bold'))
+        l3.place(x=60,y=160)
+        by2 = Entry(win1,textvariable=si2,bd=1,font=('Arial',15,'bold'))
+        by2.place(x=180,y=160,height=25,width=200)
+
+        l4 = Label(win1,text="Password:",font=('veranda',10,'bold'))
+        l4.place(x=60,y=220)
+        by3 = Entry(win1,textvariable=si3,bd=1,font=('Arial',15,'bold'))
+        by3.place(x=180,y=220,height=25,width=200)
+
+        l5 = Label(win1,text="Email:",font=('veranda',10,'bold'))
+        l5.place(x=60,y=280)
+        by4 = Entry(win1,textvariable=si4,bd=1,font=('Arial',15,'bold'))
+        by4.place(x=180,y=280,height=25,width=200)
+
+        but = Button(win1,text='Submit',height=1,width=20,font=('veranda',12,'bold'),fg="#F5FFFA",bg="#396060")
+        but.place(x=150,y=350)
+
+
+        win1.mainloop()
+
+
     def change_password():
 
         def submit():
@@ -1049,7 +1093,11 @@ def home():
 
     bu4 = Button(f1,text="Forgot Password?",font=('veranda',15,'bold'),activebackground="#70a9a9",bg="#70a9a9",
                          fg="#B22222",relief=FLAT,command=change_password)
-    bu4.place(x=400,y=500)
+    bu4.place(x=250,y=500)
+
+    bu5 = Button(f1,text="Sign Up",font=('veranda',15,'bold'),activebackground="#70a9a9",bg="#70a9a9",
+                 fg="#B22222",relief=FLAT,command=sign_up)
+    bu5.place(x=580,y=500)
 
     b1.focus()
 
