@@ -836,7 +836,8 @@ def home():
             try:
                con=mysql.connect(host="localhost",user="root",password="",database="library-management-db")
             except:
-                print("You are not connected to server(localhost)")
+                messagebox.showerror("Error","You are not connected to server(localhost)")
+
             else:
                flg=0
                cursor=con.cursor()
