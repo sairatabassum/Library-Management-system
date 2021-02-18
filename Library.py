@@ -177,8 +177,9 @@ def Delete():
             win2.destroy()
 
         B_ID = dy1.get()
+        B_Name = dy2.get()
 
-        if B_ID == "":
+        if B_ID == "" and B_Name == "":
             win2 = Toplevel(win)
             win2.title("Insert ID")
             win2.resizable(False,False)
@@ -186,23 +187,23 @@ def Delete():
 
             lu1 = Label(win2,image="::tk::icons::error")
             lu1.place(x=40,y=20)
-            lu2 = Label(win2,text="Book ID is required")
+            lu2 = Label(win2,text="Book ID or Book Name is required")
             lu2.place(x=90,y=25)
 
             bu1 = Button(win2,text='Ok',height=1,width=10,font=('veranda',10,''),command=win_destroy)
             bu1.place(x=180,y=80)
             win2.mainloop()
-        else:
-            flg = 0
+        elif B_ID != "":
+            flg_id = 0
             conn = mysql.connect(host="localhost",user="root",password="",database="library-management-db")
             cursor = conn.cursor()
             cursor.execute("SELECT `Book ID` ,`Title` FROM `book_details` where `Book ID`=" + B_ID)
             for (I,T) in cursor:
                 if str(I) == (B_ID):
-                    flg = 1
+                    flg_id = 1
             cursor.close()
 
-            if flg == 0:
+            if flg_id == 0:
                 win2 = Toplevel(win)
                 win2.title("Error")
                 win2.resizable(False,False)
@@ -238,6 +239,53 @@ def Delete():
                 dy1.delete(0,'end')
                 win2.mainloop()
 
+        else:
+            flg_name = 0
+            conn = mysql.connect(host="localhost",user="root",password="",database="library-management-db")
+            cursor = conn.cursor()
+            cursor.execute("SELECT `Book ID` ,`Title` FROM `book_details` where `Title`= '" + B_Name + "'")
+            for (I,T) in cursor:
+                if T.upper() == B_Name.upper():
+                    flg_name = 1
+            cursor.close()
+
+            if flg_name == 0:
+                win2 = Toplevel(win)
+                win2.title("Error")
+                win2.resizable(False,False)
+                win2.geometry("300x120+500+320")
+
+                Lu1 = Label(win2,image="::tk::icons::error")
+                Lu1.place(x=40,y=20)
+                Lu2 = Label(win2,text="Book Name is not found")
+                Lu2.place(x=90,y=25)
+
+                B1 = Button(win2,text='Ok',height=1,width=10,font=('veranda',10,''),command=win_destroy)
+                B1.place(x=180,y=80)
+                win2.mainloop()
+
+            else:
+                conn = mysql.connect(host="localhost",user="root",password="",database="library-management-db")
+                cursor = conn.cursor()
+                cursor.execute("DELETE FROM `book_details` WHERE `Book ID`='" + B_Name + "'")
+                cursor.execute("commit")
+                cursor.close()
+
+                win2 = Toplevel(win)
+                win2.title("Delete Book")
+                win2.resizable(False,False)
+                win2.geometry("300x120+500+320")
+
+                Lu1 = Label(win2,image="::tk::icons::information")
+                Lu1.place(x=40,y=20)
+                Lu2 = Label(win2,text="Deleted Successfully")
+                Lu2.place(x=90,y=25)
+
+                B1 = Button(win2,text='Ok',height=1,width=10,font=('veranda',10,''),command=win_destroy)
+                B1.place(x=180,y=80)
+                dy2.delete(0,'end')
+                win2.mainloop()
+
     f2 = Frame(bg="#8fbcbc")
     f2.place(x=0,y=0,width=990,height=650)
 
@@ -251,7 +299,7 @@ def Delete():
     wh.place(x=0,y=90,width=990,height=30)
 
     f4 = Frame(f2,bg="#F5FFFA")
-    f4.place(x=200,y=200,width=600,height=250)
+    f4.place(x=200,y=180,width=600,height=400)
 
     f5 = Frame(f4,bg="#396060")
     f5.place(x=0,y=0,width=600,height=50)
@@ -260,17 +308,30 @@ def Delete():
     l1.place(x=200,y=2)
 
     delete_ID = StringVar()
+    delete_name = StringVar()
+
     d_ID = Label(f4,text="Book ID",font=('veranda',10,'bold'),bg="#F5FFFA")
     d_ID.place(x=60,y=100)
 
     dy1 = Entry(f4,textvariable=delete_ID,bd=1,font=('Arial',15,'bold'),border=2,bg="white",relief=GROOVE)
     dy1.place(x=180,y=100,height=25,width=300)
 
-    De = Button(f4,text='Delete',height=1,width=25,font=('veranda',12,'bold'),bg="#396060",fg="white",command=DEL)
-    De.place(x=190,y=160)
+    Or = Label(f4,text='Or',font=('veranda',12,'bold'),bg="#F5FFFA",fg="#B22222")
+    Or.place(x=310,y=150)
 
-    De1 = Button(f2,text='<Back',height=1,width=10,font=('veranda',12,'bold'),bg="#396060",fg="white",command=back_dashboard)
+    d_name = Label(f4,text="Book Name",font=('veranda',10,'bold'),bg="#F5FFFA")
+    d_name.place(x=60,y=200)
+
+    dy2 = Entry(f4,textvariable=delete_name,bd=1,font=('Arial',15,'bold'),border=2,bg="white",relief=GROOVE)
+    dy2.place(x=180,y=200,height=25,width=300)
+
+    De1 = Button(f2,text='<Back',height=1,width=10,font=('veranda',12,'bold'),bg="#396060",fg="white",
+                 command=back_dashboard)
     De1.place(x=10,y=140)
+
+    De = Button(f4,text='Delete',height=1,width=25,font=('veranda',12,'bold'),bg="#396060",fg="white",command=DEL)
+    De.place(x=190,y=280)
+
 
     dy1.focus()
 
