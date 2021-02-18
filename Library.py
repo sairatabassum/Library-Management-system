@@ -884,9 +884,76 @@ def home():
     def sign_up():
 
 
+        def sub():
+
+            def win_destroy():
+                win2.destroy()
+            def win2_destroy():
+                win3.destroy()
+                win1.destroy()
+
+            User_Name=by.get()
+            Name=by2.get()
+            Password=by3.get()
+            Email=by4.get()
+
+            if User_Name=="" or Name=="" or Password=="" or Email=="":
+                win2 = Toplevel(win)
+                win2.title("Insert Status")
+                win2.resizable(False,False)
+                win2.geometry("300x120+500+320")
+
+                lu1 = Label(win2,image="::tk::icons::error")
+                lu1.place(x=40,y=20)
+                lu2 = Label(win2,text="All fields are required")
+                lu2.place(x=90,y=25)
+
+                bu1 = Button(win2,text='Ok',height=1,width=10,font=('veranda',10,''),command=win_destroy)
+                bu1.place(x=180,y=80)
+                win2.mainloop()
+
+            else:
+                f = 0
+                conn = mysql.connect(host="localhost",user="root",password="",database="library-management-db")
+                cursorr = conn.cursor()
+                cursorr.execute("SELECT `User Name`,`Name`  FROM `admin`")
+                for (us,name) in cursorr:
+                    if us == User_Name:
+                        f = 1
+                        break
+                conn.close()
+
+                if f == 1:
+                    np = Label(win1,text='User Name is already exist',font=('Arial',10,'bold'),fg='#B22222')
+                    np.place(x=180,y=129)
+                else:
+                    conn = mysql.connect(host="localhost",user="root",password="",database="library-management-db")
+                    cursor = conn.cursor()
+                    cursor.execute("INSERT INTO `admin` VALUES ('"+User_Name+"' ,'"+Name+"', '"+Password+"', '"+Email+"')")
+                    cursor.execute("commit")
+                    cursor.close()
+
+                    win3 = Toplevel(win)
+                    win3.title("Sign Up")
+                    win3.resizable(False,False)
+                    win3.geometry("300x120+500+320")
+
+                    lu2 = Label(win3,image="::tk::icons::information")
+                    lu2.place(x=40,y=20)
+                    lu3 = Label(win3,text="You have Signed up Successfully")
+                    lu3.place(x=80,y=25)
+
+                    bu2 = Button(win3,text='Ok',height=1,width=10,font=('veranda',10,''),command=win2_destroy)
+                    bu2.place(x=180,y=80)
+                    win3.mainloop()
+
+
+
+
+
         win1=Toplevel(win)
         win1.title("Sign Up")
-        win1.geometry("500x450+400+150")
+        win1.geometry("500x450+450+110")
         win1.resizable(False,False)
 
 
@@ -918,8 +985,10 @@ def home():
         by4 = Entry(win1,textvariable=si4,bd=1,font=('Arial',15,'bold'))
         by4.place(x=180,y=280,height=25,width=200)
 
-        but = Button(win1,text='Submit',height=1,width=20,font=('veranda',12,'bold'),fg="#F5FFFA",bg="#396060")
+        but = Button(win1,text='Submit',height=1,width=20,font=('veranda',12,'bold'),fg="#F5FFFA",bg="#396060",command=sub)
         but.place(x=150,y=350)
+
+        by.focus()
 
 
         win1.mainloop()
@@ -1026,11 +1095,11 @@ def home():
 
     def logIn():
 
-        userid=b1.get()
+        username=b1.get()
         password=b2.get()
 
 
-        if(userid=="" or password==""):
+        if(username=="" or password==""):
             messagebox.showinfo("Insert Status","All Fields are required")
         else:
             try:
@@ -1044,7 +1113,7 @@ def home():
                cursor.execute("SELECT `User Name`, `Password` FROM `admin` ")
 
                for (us,pas)in cursor:
-                   if userid == us and password == pas:
+                   if username == us and password == pas:
                        flg=1
                        break
                if flg==1:
