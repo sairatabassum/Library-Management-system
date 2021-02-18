@@ -409,8 +409,9 @@ def Search():
             win_in.destroy()
 
         B_ID = dy1.get()
+        B_name = dy2.get()
 
-        if B_ID == "":
+        if B_ID == "" and B_name == "":
             win2 = Toplevel(win)
             win2.title("Insert ID")
             win2.resizable(False,False)
@@ -418,13 +419,14 @@ def Search():
 
             lu1 = Label(win2,image="::tk::icons::error")
             lu1.place(x=40,y=20)
-            lu2 = Label(win2,text="Book ID is required")
+            lu2 = Label(win2,text="Book ID or Book Name is required")
             lu2.place(x=90,y=25)
 
             bu1 = Button(win2,text='Ok',height=1,width=10,font=('veranda',10,''),command=win_destroy)
             bu1.place(x=180,y=80)
             win2.mainloop()
-        else:
+
+        elif B_ID != "":
             title = ""
             author = ""
             Total = 0
@@ -448,7 +450,7 @@ def Search():
 
                 Lu1 = Label(win2,image="::tk::icons::warning")
                 Lu1.place(x=40,y=20)
-                Lu2 = Label(win2,text="Your Book ID data is not found or available")
+                Lu2 = Label(win2,text="Your Book ID's data is not found or available")
                 Lu2.place(x=90,y=25)
 
                 B1 = Button(win2,text='Ok',height=1,width=10,font=('veranda',10,''),command=win_destroy)
@@ -490,6 +492,88 @@ def Search():
 
                 win_in.mainloop()
 
+        else:
+
+            conn = mysql.connect(host="localhost",user="root",password="",database="library-management-db")
+            cursor = conn.cursor()
+            cursor.execute(
+                "SELECT count(`Book ID`) ,`Total` FROM `book_details` where `Title` like '%" + B_name + "%' and `Total` !=0")
+            cnt = 0
+            for (I,T) in cursor:
+                cnt = I
+
+            cursor.close()
+
+            if cnt == 0:
+                win2 = Toplevel(win)
+                win2.title("Search")
+                win2.resizable(False,False)
+                win2.geometry("390x120+500+320")
+
+                Lu1 = Label(win2,image="::tk::icons::warning")
+                Lu1.place(x=40,y=20)
+                Lu2 = Label(win2,text="Your Book Name's data is not found or available")
+                Lu2.place(x=90,y=25)
+
+                B1 = Button(win2,text='Ok',height=1,width=10,font=('veranda',10,''),command=win_destroy)
+                B1.place(x=180,y=80)
+                win2.mainloop()
+
+            else:
+                win_in = Toplevel(win)
+                win_in.title("Search Book")
+                win_in.resizable(False,False)
+                win_in.geometry("440x250+500+180")
+                win_in.configure(bg="#F5FFFA")
+
+                f1 = Frame(win_in,bg="#666666")
+                f1.place(x=0,y=0,height=40,width=440)
+
+                l1 = Label(f1,text="Available",font=('veranda',20,'bold'),bg='#666666',fg='#F5FFFA')
+                l1.place(x=150,y=2)
+
+                f2 = Frame(win_in,bg="#F5FFFA")
+                f2.place(x=0,y=40,height=250,width=440)
+
+                scroll_bar = Scrollbar(f2,orient=VERTICAL)
+
+                style = ttk.Style()
+                style.theme_use('alt')
+                style.configure(".",font=('veranda',10))
+                style.configure("Treeview.Heading",font=('veranda',12,'bold'),foreground='white',background="#262626")
+                style.configure("Treeview",rowheight=20,foreground="black",background="#D3D3D3",
+                                fieldbackground="#D3D3D3")
+                style.map('Treeview',background=[('selected','#e60000')])
+
+                book_table = ttk.Treeview(f2,columns=("Book ID","Title","Author"),
+                                          yscrollcommand=scroll_bar.set)
+
+                scroll_bar.place(x=420,y=0,height=200)
+                scroll_bar.config(command=book_table.yview)
+
+                book_table.heading("Book ID",text="Book ID")
+                book_table.heading("Title",text="Title")
+                book_table.heading("Author",text="Author")
+
+                book_table.column("Book ID",width=50)
+                book_table.column("Title",width=50)
+                book_table.column("Author",width=50)
+
+                book_table['show'] = 'headings'
+                book_table.place(x=0,y=0,height=200,width=420)
+
+                conn = mysql.connect(host="localhost",user="root",password="",database="library-management-db")
+                cursor = conn.cursor()
+                cursor.execute(
+                    "SELECT `Book ID`, `Title`, `Author`  FROM `book_details` where `Title` like '%" + B_name + "%' and `Total` !=0")
+
+                for (B,T,A) in cursor:
+                    book_table.insert('',END,values=(B,T,A))
+
+                cursor.close()
+
+                win.mainloop()
+
     f2 = Frame(bg="#8fbcbc")
     f2.place(x=0,y=0,width=990,height=650)
 
@@ -503,7 +587,7 @@ def Search():
     wh.place(x=0,y=90,width=990,height=30)
 
     f4 = Frame(f2,bg="#F5FFFA")
-    f4.place(x=200,y=200,width=600,height=250)
+    f4.place(x=200,y=180,width=600,height=400)
 
     f5 = Frame(f4,bg="#396060")
     f5.place(x=0,y=0,width=600,height=50)
@@ -512,20 +596,31 @@ def Search():
     l1.place(x=200,y=2)
 
     search_ID = StringVar()
+    search_name = StringVar()
+
     d_ID = Label(f4,text="Book ID",font=('veranda',10,'bold'),bg="#F5FFFA")
     d_ID.place(x=60,y=100)
 
     dy1 = Entry(f4,textvariable=search_ID,bd=1,font=('Arial',15,'bold'),border=2,bg="white",relief=GROOVE)
     dy1.place(x=180,y=100,height=25,width=300)
 
+    Or = Label(f4,text='Or',font=('veranda',12,'bold'),bg="#F5FFFA",fg="#B22222")
+    Or.place(x=310,y=150)
+
+    d_name = Label(f4,text="Book Name",font=('veranda',10,'bold'),bg="#F5FFFA")
+    d_name.place(x=60,y=200)
+
+    dy2 = Entry(f4,textvariable=search_name,bd=1,font=('Arial',15,'bold'),border=2,bg="white",relief=GROOVE)
+    dy2.place(x=180,y=200,height=25,width=300)
+    dy1.focus()
     De = Button(f4,text='Search',height=1,width=25,font=('veranda',12,'bold'),bg="#396060",fg="white",command=SEARCH)
-    De.place(x=190,y=160)
+    De.place(x=190,y=280)
 
     De1 = Button(f2,text='<Back',height=1,width=10,font=('veranda',12,'bold'),bg="#396060",fg="white",
                  command=back_dashboard)
     De1.place(x=10,y=140)
 
-    dy1.focus()
+
 
 
 def Issue():
