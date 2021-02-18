@@ -16,7 +16,7 @@ win.title("Library System")
 win.geometry('990x650+200+15')
 win.resizable(False,False)
 win.config(bg="#70a9a9")
-
+win.iconbitmap(r'bookshelf+library+icon.ico')
 
 def back_dashboard():
     dashboard()
