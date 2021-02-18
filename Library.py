@@ -889,10 +889,10 @@ def home():
             def end():
                 win1.destroy()
 
-            user_id = by.get()
+            user_name = by.get()
             pas = by2.get()
 
-            if (user_id == "" or pas == ""):
+            if (user_name == "" or pas == ""):
                 win2 = Toplevel(win1)
                 win2.title("Insert Status")
                 win2.resizable(False,False)
@@ -910,21 +910,21 @@ def home():
                 f = 0
                 conn = mysql.connect(host="localhost",user="root",password="",database="library-management-db")
                 cursorr = conn.cursor()
-                cursorr.execute("SELECT `User ID`,`Name`  FROM `admin`")
-                for (id,name) in cursorr:
-                    if str(id) == user_id:
+                cursorr.execute("SELECT `User Name`,`Name`  FROM `admin`")
+                for (us_name,name) in cursorr:
+                    if us_name == user_name:
                         f=1
                         break
                 conn.close()
 
                 if f == 0:
-                    np = Label(win1,text='ID is not found',font=('Arial',10,'bold'),fg='#B22222')
-                    np.place(x=230,y=129)
+                    np = Label(win1,text='User Name is not found',font=('Arial',10,'bold'),fg='#B22222')
+                    np.place(x=200,y=129)
 
                 else:
                     conn = mysql.connect(host="localhost",user="root",password="",database="library-management-db")
                     cursorr = conn.cursor()
-                    cursorr.execute("UPDATE admin SET `Password` = " + pas + " WHERE `User ID`=" + user_id)
+                    cursorr.execute("UPDATE admin SET `Password` = '" + pas + "' WHERE `User Name`= '" + user_name +"'")
                     cursorr.execute("commit")
                     cursorr.close()
 
@@ -997,16 +997,16 @@ def home():
             else:
                flg=0
                cursor=con.cursor()
-               cursor.execute("SELECT `User ID`, `Password` FROM `admin` ")
+               cursor.execute("SELECT `User Name`, `Password` FROM `admin` ")
 
                for (us,pas)in cursor:
-                   if userid == str(us) and password == pas:
+                   if userid == us and password == pas:
                        flg=1
                        break
                if flg==1:
                    dashboard()
                else:
-                   messagebox.showerror("Library System","Your User ID or Password is wrong")
+                   messagebox.showerror("Library System","Your User Name or Password is wrong")
                con.close()
 
 
@@ -1025,7 +1025,7 @@ def home():
     s1 = StringVar()
     s2 = StringVar()
 
-    l1 = Label(frame1,text="User ID",font=('veranda',20,'bold'),fg='#F5FFFA',bg='#396060')
+    l1 = Label(frame1,text="User Name",font=('veranda',20,'bold'),fg='#F5FFFA',bg='#396060')
     l1.place(x=5,y=10)
     b1 = Entry(frame1,textvariable=s1,bd=5,font=('Arial',15,'bold'),bg="#e6e6e6")
     b1.place(x=200,y=15,height=35,width=420)
