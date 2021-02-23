@@ -409,10 +409,10 @@ def Views():
     l = Label(f3,text="Pikachu Library",font=('veranda',45,'bold'),bg='#396060',fg='#F5FFFA')
     l.place(x=280,y=5)
 
-    wh = Frame(f2,bg="#F5FFFA")
+    wh = Frame(f2,bg="#B0E0E6")
     wh.place(x=0,y=90,width=990,height=90)
 
-    l = Label(wh,text="Search by",font=('veranda',15,'bold'),bg='#F5FFFA',fg='red')
+    l = Label(wh,text="Search by",font=('veranda',15,'bold'),bg='#B0E0E6',fg='red')
     l.place(x=280,y=5)
 
     n = StringVar()
@@ -439,8 +439,8 @@ def Views():
     f5 = Frame(f4,bg="#396060")
     f5.place(x=0,y=0,width=990,height=50)
 
-    l1 = Label(f5,text="All Book Details",font=('veranda',25,'bold'),bg="#396060",fg='#F5FFFA')
-    l1.place(x=360,y=0)
+    l1 = Label(f5,text="Book Details",font=('veranda',25,'bold'),bg="#396060",fg='#F5FFFA')
+    l1.place(x=390,y=0)
 
     scroll_bar = Scrollbar(f4,orient=VERTICAL)
 
@@ -481,7 +481,7 @@ def Views():
 
     cursor.close()
 
-    Dep = Button(f2,text='<Back',height=1,width=8,font=('veranda',12,'bold'),bg="#F5FFFA",fg="RED",
+    Dep = Button(f2,text='<Back',height=1,width=8,font=('veranda',12,'bold'),bg="#B0E0E6",fg="RED",
                  command=back_dashboard,relief=FLAT,activebackground="#F5FFFA")
     Dep.place(x=0,y=92)
 
