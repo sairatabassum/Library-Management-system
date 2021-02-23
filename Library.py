@@ -336,6 +336,70 @@ def Delete():
     dy1.focus()
 
 def Views():
+    def all():
+        book_table.delete(*book_table.get_children())
+
+        conn = mysql.connect(host="localhost",user="root",password="",database="library-management-db")
+        cursor = conn.cursor()
+        cursor.execute("SELECT `Book ID`, `Title`, `Author`, `Edition`, `Total` FROM `book_details` ")
+
+        for (B,T,A,E,TO) in cursor:
+            book_table.insert('',END,values=(B,T,A,E,TO))
+
+    def Search():
+        def win_destroy():
+            win2.destroy()
+
+        g = combo_s.get()
+        gi = dy1.get()
+
+        if g == "" or gi == "":
+            win2 = Toplevel(win)
+            win2.title("Insert ID")
+            win2.resizable(False,False)
+            win2.geometry("300x120+500+320")
+
+            lu1 = Label(win2,image="::tk::icons::error")
+            lu1.place(x=30,y=20)
+            lu2 = Label(win2,text="Book ID or Author or Title is required")
+            lu2.place(x=70,y=25)
+
+            bu1 = Button(win2,text='Ok',height=1,width=10,font=('veranda',10,''),command=win_destroy)
+            bu1.place(x=180,y=80)
+            win2.mainloop()
+        elif g == "Book ID":
+            book_table.delete(*book_table.get_children())
+
+            conn = mysql.connect(host="localhost",user="root",password="",database="library-management-db")
+            cursor = conn.cursor()
+            cursor.execute(
+                "SELECT `Book ID`, `Title`, `Author`, `Edition`, `Total` FROM `book_details` Where `Book ID`=" + gi)
+
+            for (B,T,A,E,TO) in cursor:
+                book_table.insert('',END,values=(B,T,A,E,TO))
+
+        elif g == "Book Title":
+            book_table.delete(*book_table.get_children())
+
+            conn = mysql.connect(host="localhost",user="root",password="",database="library-management-db")
+            cursor = conn.cursor()
+            cursor.execute(
+                "SELECT `Book ID`, `Title`, `Author`, `Edition`, `Total` FROM `book_details` Where `Title`= '" + gi + "'")
+
+            for (B,T,A,E,TO) in cursor:
+                book_table.insert('',END,values=(B,T,A,E,TO))
+
+        else:
+            book_table.delete(*book_table.get_children())
+
+            conn = mysql.connect(host="localhost",user="root",password="",database="library-management-db")
+            cursor = conn.cursor()
+            cursor.execute(
+                "SELECT `Book ID`, `Title`, `Author`, `Edition`, `Total` FROM `book_details` Where `Author`= '" + gi + "'")
+
+            for (B,T,A,E,TO) in cursor:
+                book_table.insert('',END,values=(B,T,A,E,TO))
+
     f2 = Frame(bg="#8fbcbc")
     f2.place(x=0,y=0,width=990,height=650)
 
@@ -347,6 +411,27 @@ def Views():
 
     wh = Frame(f2,bg="#F5FFFA")
     wh.place(x=0,y=90,width=990,height=90)
+
+    l = Label(wh,text="Search by",font=('veranda',15,'bold'),bg='#F5FFFA',fg='red')
+    l.place(x=280,y=5)
+
+    n = StringVar()
+
+    combo_s = ttk.Combobox(wh,width=10,height=2,font=('veranda',15,'bold'),state='readonly',textvariable=n)
+    combo_s['values'] = ("Book ID","Book Title","Author")
+    combo_s.place(x=400,y=5)
+    combo_s.current()
+
+    search_ID = StringVar()
+
+    dy1 = Entry(wh,textvariable=search_ID,bd=1,font=('Arial',15,'bold'),border=2,bg="white",relief=GROOVE)
+    dy1.place(x=550,y=5,height=30,width=200)
+
+    bu1 = Button(wh,text='Search',height=1,width=10,font=('veranda',10,''),command=Search)
+    bu1.place(x=770,y=5)
+
+    bu2 = Button(wh,text='View All',height=1,width=10,font=('veranda',10,''),command=all)
+    bu2.place(x=870,y=5)
 
     f4 = Frame(f2,bg="#F5FFFA")
     f4.place(x=0,y=133,width=990,height=520)
@@ -361,7 +446,7 @@ def Views():
 
     style = ttk.Style()
     style.theme_use('alt')
-    style.configure(".",font=('veranda',10))
+    style.configure(".",font=('veranda',11))
     style.configure("Treeview.Heading",font=('veranda',12,'bold'),foreground='black',background="#6495ED")
     style.configure("Treeview",rowheight=20,foreground="back",background="#D3D3D3",fieldbackground="#D3D3D3")
     style.map('Treeview',background=[('selected','#4169E1')])
@@ -395,9 +480,10 @@ def Views():
         book_table.insert('',END,values=(B,T,A,E,TO))
 
     cursor.close()
-    De1 = Button(f2,text='<Back',height=1,width=8,font=('veranda',12,'bold'),bg="#F5FFFA",fg="RED",
+
+    Dep = Button(f2,text='<Back',height=1,width=8,font=('veranda',12,'bold'),bg="#F5FFFA",fg="RED",
                  command=back_dashboard,relief=FLAT,activebackground="#F5FFFA")
-    De1.place(x=0,y=92)
+    Dep.place(x=0,y=92)
 
 
 def Search():
@@ -926,6 +1012,11 @@ def home():
                 if f == 1:
                     np = Label(win1,text='User Name is already exist',font=('Arial',10,'bold'),fg='#B22222')
                     np.place(x=180,y=129)
+
+                elif len(Password)<8:
+                    np = Label(win1,text='Password must be at least 8 characters',font=('Arial',10,'bold'),fg='#B22222')
+                    np.place(x=180,y=250)
+
                 else:
                     conn = mysql.connect(host="localhost",user="root",password="",database="library-management-db")
                     cursor = conn.cursor()
