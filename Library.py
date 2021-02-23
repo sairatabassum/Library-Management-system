@@ -678,8 +678,8 @@ def Search():
     f5 = Frame(f4,bg="#396060")
     f5.place(x=0,y=0,width=600,height=50)
 
-    l1 = Label(f5,text="Search Book",font=('veranda',25,'bold'),bg="#396060",fg='#F5FFFA')
-    l1.place(x=200,y=2)
+    l1 = Label(f5,text="Search Available Book",font=('veranda',25,'bold'),bg="#396060",fg='#F5FFFA')
+    l1.place(x=120,y=2)
 
     search_ID = StringVar()
     search_name = StringVar()
@@ -941,7 +941,7 @@ def dashboard():
     but1 = Button(f2,text='Add Book Details',height=2,width=30,font=('veranda',15,''),bg="black",fg="#F5FFFA",command=Add_Book)
     but1.place(x=300,y=140)
 
-    but2 = Button(f2,text='Search Book',height=2,width=30,font=('veranda',15,''),bg="black",fg="#F5FFFA",command=Search)
+    but2 = Button(f2,text='Search Available Book',height=2,width=30,font=('veranda',15,''),bg="black",fg="#F5FFFA",command=Search)
     but2.place(x=300,y=200)
 
     but3 = Button(f2,text='Delete Book',height=2,width=30,font=('veranda',15,''),bg="black",fg="#F5FFFA",command=Delete)
