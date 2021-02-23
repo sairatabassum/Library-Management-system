@@ -355,7 +355,7 @@ def Views():
 
         if g == "" or gi == "":
             win2 = Toplevel(win)
-            win2.title("Insert ID")
+            win2.title("Insert Status")
             win2.resizable(False,False)
             win2.geometry("300x120+500+320")
 
@@ -417,7 +417,7 @@ def Views():
 
     n = StringVar()
 
-    combo_s = ttk.Combobox(wh,width=10,height=2,font=('veranda',15,'bold'),state='readonly',textvariable=n)
+    combo_s = ttk.Combobox(wh,width=10,height=120,font=('veranda',15,'bold'),state='readonly',textvariable=n)
     combo_s['values'] = ("Book ID","Book Title","Author")
     combo_s.place(x=400,y=5)
     combo_s.current()
