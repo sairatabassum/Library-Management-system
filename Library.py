@@ -757,6 +757,17 @@ def Issue():
                 highlightcolor="black",highlightthickness=1)
     dy2.place(x=100,y=100,height=28,width=170)
 
+
+    laby = Label(f4,text="Issue Date",font=('veranda',12,'bold'),bg="#8fbcbc")
+    laby.place(x=10,y=150)
+
+    laby = Label(f4,text="Due Date",font=('veranda',12,'bold'),bg="#8fbcbc")
+    laby.place(x=10,y=200)
+
+    cal = DateEntry(f4,width=18,background='darkblue',
+                    foreground='white',borderwidth=2)
+    cal.place(x=100,y=150)
+
     # -----f5 Issue Books----
 
     std_id = StringVar()
@@ -787,17 +798,7 @@ def Issue():
                 highlightcolor="black",highlightthickness=1)
     dy3.place(x=100,y=170,height=28,width=170)
 
-    # ---Out of window---
 
-    laby = Label(f2,text="Issue Date",font=('veranda',12,'bold'),bg="#8fbcbc")
-    laby.place(x=100,y=510)
-
-    laby = Label(f2,text="Due Date",font=('veranda',12,'bold'),bg="#8fbcbc")
-    laby.place(x=100,y=540)
-
-    cal = DateEntry(f2,width=18,background='darkblue',
-                    foreground='white',borderwidth=2)
-    cal.place(x=200,y=510)
 
     dy1.focus()
 
