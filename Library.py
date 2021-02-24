@@ -710,7 +710,30 @@ def Search():
 
 
 def Issue():
-    print(9)
+    f2 = Frame(bg="#8fbcbc")
+    f2.place(x=0,y=0,width=990,height=650)
+
+    f3 = Frame(f2,bg="#396060")
+    f3.place(x=0,y=0,width=990,height=90)
+
+    l = Label(f3,text="Pikachu Library",font=('veranda',45,'bold'),bg='#396060',fg='#F5FFFA')
+    l.place(x=280,y=5)
+
+    wh = Frame(f2,bg="#F5FFFA")
+    wh.place(x=0,y=90,width=990,height=30)
+
+    f4 = Frame(f2,bg="#8fbcbc",bd=3,highlightbackground="black",highlightcolor="black",highlightthickness=2)
+    f4.place(x=90,y=150,width=400,height=350)
+
+    lab1 = Label(f4,text="Issue Books",font=('veranda',15,'bold'),bg="#8fbcbc",fg='red')
+    lab1.place(x=25,y=-12)
+
+    f5 = Frame(f2,bg="#8fbcbc",highlightbackground="black",highlightcolor="black",highlightthickness=2)
+    f5.place(x=510,y=150,width=400,height=450)
+
+    lab2 = Label(f5,text="Student Details",font=('veranda',15,'bold'),bg="#8fbcbc",fg='red')
+    lab2.place(x=25,y=-10)
+
 
 def Return():
     print(9)
