@@ -2,6 +2,8 @@ from tkinter import*
 from tkinter import messagebox
 import mysql.connector as mysql
 from tkinter import ttk
+from tkcalendar import DateEntry
+
 
 
 
@@ -733,6 +735,71 @@ def Issue():
 
     lab2 = Label(f5,text="Student Details",font=('veranda',15,'bold'),bg="#8fbcbc",fg='red')
     lab2.place(x=25,y=-10)
+
+    # -----f4 Issue Books----
+    id = StringVar()
+    issue_id = StringVar()
+
+    lab2 = Label(f4,text="Book ID",font=('veranda',12,'bold'),bg="#8fbcbc")
+    lab2.place(x=10,y=35)
+
+    dy1 = Entry(f4,textvariable=id,bd=1,font=('Arial',15,'bold'),bg="white",highlightbackground="black",
+                highlightcolor="black",highlightthickness=1)
+    dy1.place(x=100,y=35,height=28,width=170)
+
+    De = Button(f4,text='Search',height=1,width=8,font=('veranda',12,'bold'),bg="Black",fg="white")
+    De.place(x=280,y=32)
+
+    lab3 = Label(f4,text="Issue ID",font=('veranda',12,'bold'),bg="#8fbcbc")
+    lab3.place(x=10,y=100)
+
+    dy2 = Entry(f4,textvariable=issue_id,bd=1,font=('Arial',15,'bold'),bg="white",highlightbackground="black",
+                highlightcolor="black",highlightthickness=1)
+    dy2.place(x=100,y=100,height=28,width=170)
+
+    # -----f5 Issue Books----
+
+    std_id = StringVar()
+    f_name = StringVar()
+    sem = StringVar()
+
+    labe2 = Label(f5,text="Student ID",font=('veranda',12,'bold'),bg="#8fbcbc")
+    labe2.place(x=10,y=35)
+
+    dye1 = Entry(f5,textvariable=std_id,bd=1,font=('Arial',15,'bold'),bg="white",highlightbackground="black",
+                 highlightcolor="black",highlightthickness=1)
+    dye1.place(x=100,y=35,height=28,width=170)
+
+    Dee = Button(f5,text='Search',height=1,width=8,font=('veranda',12,'bold'),bg="Black",fg="white")
+    Dee.place(x=280,y=32)
+
+    labe3 = Label(f5,text="Course",font=('veranda',12,'bold'),bg="#8fbcbc")
+    labe3.place(x=10,y=100)
+
+    dy2 = Entry(f5,textvariable=f_name,bd=1,font=('Arial',15,'bold'),bg="white",highlightbackground="black",
+                highlightcolor="black",highlightthickness=1)
+    dy2.place(x=100,y=100,height=28,width=170)
+
+    labe4 = Label(f5,text="Semester",font=('veranda',12,'bold'),bg="#8fbcbc")
+    labe4.place(x=10,y=170)
+
+    dy3 = Entry(f5,textvariable=sem,bd=1,font=('Arial',15,'bold'),bg="white",highlightbackground="black",
+                highlightcolor="black",highlightthickness=1)
+    dy3.place(x=100,y=170,height=28,width=170)
+
+    # ---Out of window---
+
+    laby = Label(f2,text="Issue Date",font=('veranda',12,'bold'),bg="#8fbcbc")
+    laby.place(x=100,y=510)
+
+    laby = Label(f2,text="Due Date",font=('veranda',12,'bold'),bg="#8fbcbc")
+    laby.place(x=100,y=540)
+
+    cal = DateEntry(f2,width=18,background='darkblue',
+                    foreground='white',borderwidth=2)
+    cal.place(x=200,y=510)
+
+    dy1.focus()
 
 
 def Return():
