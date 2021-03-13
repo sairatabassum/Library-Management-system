@@ -745,6 +745,7 @@ def Issue():
 
 
         if str(B_Id)!=str(Book_Id) or Total==0:
+            flg1=0
             win2 = Toplevel(win)
             win2.title("Search")
             win2.resizable(False,False)
@@ -760,7 +761,7 @@ def Issue():
             win2.mainloop()
 
         else:
-            flag=1
+            flag1=1
 
             op1 = Label(f4,text="Book ID:",font=('veranda',12,'bold'),bg="#8B0000",fg="#FFF8DC")
             op1.place(x=10,y=250)
@@ -787,7 +788,70 @@ def Issue():
             ope4.place(x=100,y=340)
 
     def s_id_search():
+        def win_destroy():
+            win2.destroy()
+
         Student_Id=dye1.get()
+        Name=""
+        Department=""
+        Year=0
+        Student_ID=0
+
+        conn = mysql.connect(host="localhost",user="root",password="",database="library-management-db")
+        cursor = conn.cursor()
+        cursor.execute("SELECT `Std_ID`, `Name`, `Department`, `Year` FROM `student_information` WHERE `Std_ID`="+ Student_Id)
+
+        for(S,N,D,Y) in cursor:
+            Student_ID=S
+            Name=N
+            Department=D
+            Year=Y
+        cursor.close()
+
+
+        if str(Student_Id) != str(Student_ID):
+            flg2=0
+            win2 = Toplevel(win)
+            win2.title("Search")
+            win2.resizable(False,False)
+            win2.geometry("300x120+500+320")
+
+            Lu1 = Label(win2,image="::tk::icons::warning")
+            Lu1.place(x=40,y=20)
+            Lu2 = Label(win2,text="Student Id is incorrect")
+            Lu2.place(x=90,y=25)
+
+            B1 = Button(win2,text='Ok',height=1,width=10,font=('veranda',10,''),command=win_destroy)
+            B1.place(x=180,y=80)
+            win2.mainloop()
+
+        else:
+            flag2=1
+
+            op1 = Label(f5,text="Student ID:",font=('veranda',12,'bold'),bg="#8B0000",fg="#FFF8DC")
+            op1.place(x=10,y=250)
+
+            ope1 = Label(f5,text=Student_Id,font=('veranda',12,'bold'),bg="#8B0000",fg="#FFF8DC")
+            ope1.place(x=120,y=250)
+
+            op2 = Label(f5,text="Name:",font=('veranda',12,'bold'),bg="#8B0000",fg="#FFF8DC")
+            op2.place(x=10,y=280)
+
+            ope2 = Label(f5,text=Name,font=('veranda',12,'bold'),bg="#8B0000",fg="#FFF8DC")
+            ope2.place(x=120,y=280)
+
+            op3 = Label(f5,text="Department:",font=('veranda',12,'bold'),bg="#8B0000",fg="#FFF8DC")
+            op3.place(x=10,y=310)
+
+            ope3 = Label(f5,text=Department,font=('veranda',12,'bold'),bg="#8B0000",fg="#FFF8DC")
+            ope3.place(x=120,y=310)
+
+            op4 = Label(f5,text="Year:",font=('veranda',12,'bold'),bg="#8B0000",fg="#FFF8DC")
+            op4.place(x=10,y=340)
+
+            ope4 = Label(f5,text=Year,font=('veranda',12,'bold'),bg="#8B0000",fg="#FFF8DC")
+            ope4.place(x=120,y=340)
+
 
     def issue_s():
         def win_destroy():
