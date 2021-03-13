@@ -762,9 +762,29 @@ def Issue():
         else:
             flag=1
 
+            op1 = Label(f4,text="Book ID:",font=('veranda',12,'bold'),bg="#8B0000",fg="#FFF8DC")
+            op1.place(x=10,y=250)
 
+            ope1 = Label(f4,text=Book_Id,font=('veranda',12,'bold'),bg="#8B0000",fg="#FFF8DC")
+            ope1.place(x=100,y=250)
 
+            op2 = Label(f4,text="Title:",font=('veranda',12,'bold'),bg="#8B0000",fg="#FFF8DC")
+            op2.place(x=10,y=280)
 
+            ope2 = Label(f4,text=Title,font=('veranda',12,'bold'),bg="#8B0000",fg="#FFF8DC")
+            ope2.place(x=100,y=280)
+
+            op3 = Label(f4,text="Author:",font=('veranda',12,'bold'),bg="#8B0000",fg="#FFF8DC")
+            op3.place(x=10,y=310)
+
+            ope3 = Label(f4,text=Author,font=('veranda',12,'bold'),bg="#8B0000",fg="#FFF8DC")
+            ope3.place(x=100,y=310)
+
+            op4 = Label(f4,text="Edition:",font=('veranda',12,'bold'),bg="#8B0000",fg="#FFF8DC")
+            op4.place(x=10,y=340)
+
+            ope4 = Label(f4,text=Edition,font=('veranda',12,'bold'),bg="#8B0000",fg="#FFF8DC")
+            ope4.place(x=100,y=340)
 
     def s_id_search():
         Student_Id=dye1.get()
