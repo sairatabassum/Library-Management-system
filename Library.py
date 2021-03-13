@@ -713,10 +713,61 @@ def Search():
 
 def Issue():
 
+    flag1=0
+    flag2=0
+
     def b_id_search():
-        print(9)
+
+        def win_destroy():
+            win2.destroy()
+        Book_Id=dy1.get()
+
+        B_Id=0
+        Title=""
+        Author=""
+        Edition=0
+        Total=0
+
+        conn = mysql.connect(host="localhost",user="root",password="",database="library-management-db")
+        cursor = conn.cursor()
+        cursor.execute("SELECT `Book ID` ,`Title` ,`Author`, `Edition`,`Total` FROM `book_details` where `Book ID`=" + Book_Id)
+
+        for (B,T,A,E,TO) in cursor:
+            B_Id=B
+            Title=T
+            Author=A
+            Edition=E
+            Total=TO
+
+        cursor.close()
+
+
+
+
+        if str(B_Id)!=str(Book_Id) or Total==0:
+            win2 = Toplevel(win)
+            win2.title("Search")
+            win2.resizable(False,False)
+            win2.geometry("300x120+500+320")
+
+            Lu1 = Label(win2,image="::tk::icons::warning")
+            Lu1.place(x=40,y=20)
+            Lu2 = Label(win2,text="Your Book ID is not found")
+            Lu2.place(x=90,y=25)
+
+            B1 = Button(win2,text='Ok',height=1,width=10,font=('veranda',10,''),command=win_destroy)
+            B1.place(x=180,y=80)
+            win2.mainloop()
+
+        else:
+            flag=1
+
+
+
+
+
     def s_id_search():
-        print(9)
+        Student_Id=dye1.get()
 
     def issue_s():
         def win_destroy():
