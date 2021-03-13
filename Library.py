@@ -718,6 +718,32 @@ def Issue():
     def s_id_search():
         print(9)
 
+    def issue_s():
+        def win_destroy():
+            win2.destroy()
+        Book_Id=dy1.get()
+        Issue_Id=dy2.get()
+        Issue_Date=cal1.get()
+        Due_Date=cal2.get()
+        Student_Id=dye1.get()
+        Course=dye2.get()
+        Semester=dy3.get()
+
+        if Book_Id=="" or Issue_Id=="" or Issue_Date=="" or Due_Date=="" or Student_Id=="" or Course=="" or Semester=="":
+            win2 = Toplevel(win)
+            win2.title("Insert Status")
+            win2.resizable(False,False)
+            win2.geometry("300x120+500+320")
+
+            lu1 = Label(win2,image="::tk::icons::error")
+            lu1.place(x=40,y=20)
+            lu2 = Label(win2,text="All Fields are required")
+            lu2.place(x=90,y=25)
+
+            bu1 = Button(win2,text='Ok',height=1,width=10,font=('veranda',10,''),command=win_destroy)
+            bu1.place(x=180,y=80)
+            win2.mainloop()
+
 
     f2 = Frame(bg="#8fbcbc")
     f2.place(x=0,y=0,width=990,height=650)
@@ -754,7 +780,7 @@ def Issue():
                 highlightcolor="black",highlightthickness=1)
     dy1.place(x=100,y=35,height=28,width=170)
 
-    De = Button(f4,text='Search',height=1,width=8,font=('veranda',12,'bold'),bg="Black",fg="white")
+    De = Button(f4,text='Search',height=1,width=8,font=('veranda',12,'bold'),bg="Black",fg="white",command=b_id_search)
     De.place(x=280,y=32)
 
     lab3 = Label(f4,text="Issue ID",font=('veranda',12,'bold'),bg="#8fbcbc")
@@ -792,15 +818,15 @@ def Issue():
                  highlightcolor="black",highlightthickness=1)
     dye1.place(x=100,y=35,height=28,width=170)
 
-    Dee = Button(f5,text='Search',height=1,width=8,font=('veranda',12,'bold'),bg="Black",fg="white")
+    Dee = Button(f5,text='Search',height=1,width=8,font=('veranda',12,'bold'),bg="Black",fg="white",command=s_id_search)
     Dee.place(x=280,y=32)
 
     labe3 = Label(f5,text="Course",font=('veranda',12,'bold'),bg="#8fbcbc")
     labe3.place(x=10,y=100)
 
-    dy2 = Entry(f5,textvariable=f_name,bd=1,font=('Arial',15,'bold'),bg="white",highlightbackground="black",
+    dye2 = Entry(f5,textvariable=f_name,bd=1,font=('Arial',15,'bold'),bg="white",highlightbackground="black",
                 highlightcolor="black",highlightthickness=1)
-    dy2.place(x=100,y=100,height=28,width=170)
+    dye2.place(x=100,y=100,height=28,width=170)
 
     labe4 = Label(f5,text="Semester",font=('veranda',12,'bold'),bg="#8fbcbc")
     labe4.place(x=10,y=170)
@@ -809,7 +835,7 @@ def Issue():
                 highlightcolor="black",highlightthickness=1)
     dy3.place(x=100,y=170,height=28,width=170)
 
-    Dui = Button(f2,text='Issue',height=1,width=8,font=('veranda',12,'bold'),bg="Black",fg="white")
+    Dui = Button(f2,text='Issue',height=1,width=8,font=('veranda',12,'bold'),bg="Black",fg="white",command=issue_s)
     Dui.place(x=150,y=540)
 
     Fui = Button(f2,text='Back',height=1,width=8,font=('veranda',12,'bold'),bg="Black",fg="white",command=back_dashboard)
