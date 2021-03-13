@@ -712,6 +712,13 @@ def Search():
 
 
 def Issue():
+
+    def b_id_search():
+        print(9)
+    def s_id_search():
+        print(9)
+
+
     f2 = Frame(bg="#8fbcbc")
     f2.place(x=0,y=0,width=990,height=650)
 
@@ -725,7 +732,7 @@ def Issue():
     wh.place(x=0,y=90,width=990,height=30)
 
     f4 = Frame(f2,bg="#8fbcbc",bd=3,highlightbackground="black",highlightcolor="black",highlightthickness=2)
-    f4.place(x=90,y=150,width=400,height=350)
+    f4.place(x=90,y=150,width=400,height=380)
 
     lab1 = Label(f4,text="Issue Books",font=('veranda',15,'bold'),bg="#8fbcbc",fg='red')
     lab1.place(x=25,y=-12)
@@ -764,9 +771,13 @@ def Issue():
     laby = Label(f4,text="Due Date",font=('veranda',12,'bold'),bg="#8fbcbc")
     laby.place(x=10,y=200)
 
-    cal = DateEntry(f4,width=18,background='darkblue',
+    cal1 = DateEntry(f4,width=25,background='black',
                     foreground='white',borderwidth=2)
-    cal.place(x=100,y=150)
+    cal1.place(x=100,y=150)
+
+    cal2 = DateEntry(f4,width=25,background='black',
+                     foreground='white',borderwidth=2)
+    cal2.place(x=100,y=200)
 
     # -----f5 Issue Books----
 
@@ -798,6 +809,11 @@ def Issue():
                 highlightcolor="black",highlightthickness=1)
     dy3.place(x=100,y=170,height=28,width=170)
 
+    Dui = Button(f2,text='Issue',height=1,width=8,font=('veranda',12,'bold'),bg="Black",fg="white")
+    Dui.place(x=150,y=540)
+
+    Fui = Button(f2,text='Back',height=1,width=8,font=('veranda',12,'bold'),bg="Black",fg="white",command=back_dashboard)
+    Fui.place(x=300,y=540)
 
 
     dy1.focus()
