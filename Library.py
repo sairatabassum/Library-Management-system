@@ -744,6 +744,9 @@ def Issue():
             bu1.place(x=180,y=80)
             win2.mainloop()
 
+        else:
+            print(9)
+
 
     f2 = Frame(bg="#8fbcbc")
     f2.place(x=0,y=0,width=990,height=650)
