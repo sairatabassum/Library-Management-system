@@ -820,45 +820,37 @@ def Issue():
             cursor.close()
 
             if str(Student_Id) != str(Student_ID):
-
-                win2 = Toplevel(win)
-                win2.title("Search")
-                win2.resizable(False,False)
-                win2.geometry("300x120+500+320")
-
-                Lu1 = Label(win2,image="::tk::icons::warning")
-                Lu1.place(x=40,y=20)
-                Lu2 = Label(win2,text="Student Id is incorrect")
-                Lu2.place(x=90,y=25)
-
-                B1 = Button(win2,text='Ok',height=1,width=10,font=('veranda',10,''),command=win_destroy)
-                B1.place(x=180,y=80)
-                win2.mainloop()
+                frm2 = Frame(f5,bg="#70a9a9",relief=RIDGE,bd=5)
+                frm2.place(x=0,y=240,width=390,height=200)
+                op1 = Label(frm2,text="Student ID is not found",font=('veranda',12,'bold'),bg="#70a9a9",fg="red")
+                op1.place(x=90,y=70)
 
             else:
+                frm2 = Frame(f5,bg="#70a9a9",relief=RIDGE,bd=5)
+                frm2.place(x=0,y=240,width=390,height=205)
 
-                op1 = Label(f5,text="Student ID:",font=('veranda',12,'bold'),bg="#8fbcbc")
+                op1 = Label(f5,text="Student ID:",font=('veranda',12,'bold'),bg="#70a9a9",fg="#B22222")
                 op1.place(x=10,y=250)
 
-                ope1 = Label(f5,text=Student_Id,font=('veranda',12,'bold'),bg="white",fg="black")
+                ope1 = Label(f5,text=Student_Id,font=('veranda',12,'bold'),bg="#70a9a9",fg="#B22222")
                 ope1.place(x=120,y=250)
 
-                op2 = Label(f5,text="Name:",font=('veranda',12,'bold'),bg="#8fbcbc")
+                op2 = Label(f5,text="Name:",font=('veranda',12,'bold'),bg="#70a9a9",fg="#B22222")
                 op2.place(x=10,y=280)
 
-                ope2 = Label(f5,text=Name,font=('veranda',12,'bold'),bg="white",fg="black")
+                ope2 = Label(f5,text=Name,font=('veranda',12,'bold'),bg="#70a9a9",fg="#B22222")
                 ope2.place(x=120,y=280)
 
-                op3 = Label(f5,text="Department:",font=('veranda',12,'bold'),bg="#8fbcbc")
+                op3 = Label(f5,text="Department:",font=('veranda',12,'bold'),bg="#70a9a9",fg="#B22222")
                 op3.place(x=10,y=310)
 
-                ope3 = Label(f5,text=Department,font=('veranda',12,'bold'),bg="white",fg="black")
+                ope3 = Label(f5,text=Department,font=('veranda',12,'bold'),bg="#70a9a9",fg="#B22222")
                 ope3.place(x=120,y=310)
 
-                op4 = Label(f5,text="Year:",font=('veranda',12,'bold'),bg="#8fbcbc")
+                op4 = Label(f5,text="Year:",font=('veranda',12,'bold'),bg="#70a9a9",fg="#B22222")
                 op4.place(x=10,y=340)
 
-                ope4 = Label(f5,text=Year,font=('veranda',12,'bold'),bg="white",fg="black")
+                ope4 = Label(f5,text=Year,font=('veranda',12,'bold'),bg="#70a9a9",fg="#B22222")
                 ope4.place(x=120,y=340)
 
 
