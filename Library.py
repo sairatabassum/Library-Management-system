@@ -715,9 +715,11 @@ def Issue():
 
     def issue_s():
 
-
+        flg1=0
+        flg2=0
         def win_destroy():
             win2.destroy()
+
         Book_Id=dy1.get()
         Issue_Id=dy2.get()
         Issue_Date=cal1.get()
@@ -725,8 +727,6 @@ def Issue():
         Student_Id=dye1.get()
         Course=dye2.get()
         Semester=dy3.get()
-
-
 
 
         if Book_Id=="" or Issue_Id=="" or Issue_Date=="" or Due_Date=="" or Student_Id=="" or Course=="" or Semester=="":
@@ -774,6 +774,7 @@ def Issue():
                 op1.place(x=80,y=40)
 
             else:
+                flg1=1
                 frm1 = Frame(f4,bg="#70a9a9",relief=RIDGE,bd=5)
                 frm1.place(x=0,y=240,width=390,height=130)
 
@@ -826,6 +827,7 @@ def Issue():
                 op1.place(x=90,y=70)
 
             else:
+                flg2=1
                 frm2 = Frame(f5,bg="#70a9a9",relief=RIDGE,bd=5)
                 frm2.place(x=0,y=240,width=390,height=205)
 
@@ -852,6 +854,55 @@ def Issue():
 
                 ope4 = Label(f5,text=Year,font=('veranda',12,'bold'),bg="#70a9a9",fg="#B22222")
                 ope4.place(x=120,y=340)
+
+        if flg1==1 and flg2==1:
+            conn = mysql.connect(host="localhost",user="root",password="",database="library-management-db")
+
+            cursor = conn.cursor()
+            cursor.execute("SELECT `Issue ID`, `Std_ID` FROM `issue_information` WHERE `Issue ID`="+Issue_Id)
+            oio=0
+
+            for (I,S) in cursor:
+                if str(I)==str(Issue_Id):
+                    oio=1
+                    win2 = Toplevel(win)
+                    win2.title("Error")
+                    win2.resizable(False,False)
+                    win2.geometry("250x120+500+320")
+
+                    Lu1 = Label(win2,image="::tk::icons::error")
+                    Lu1.place(x=40,y=20)
+                    Lu2 = Label(win2,text="The Issue ID is already Exist!!")
+                    Lu2.place(x=90,y=25)
+
+                    B1 = Button(win2,text='Ok',height=1,width=10,font=('veranda',10,''),command=win_destroy)
+                    B1.place(x=90,y=80)
+                    win2.mainloop()
+
+            cursor.close()
+
+            if oio==0:
+                conn = mysql.connect(host="localhost",user="root",password="",database="library-management-db")
+
+                cursor = conn.cursor()
+
+                cursor.execute("INSERT INTO `issue_information`(`Issue ID`, `Std_ID`, `Book ID`, `From Date`, `To Date`) VALUES( '"+Issue_Id+"','"+Student_Id+"','"+Book_Id+"','"+Issue_Date+"','"+Due_Date+"')")
+                cursor.execute("commit")
+                cursor.close()
+                win2 = Toplevel(win)
+                win2.title("Issue Books")
+                win2.resizable(False,False)
+                win2.geometry("300x120+500+320")
+
+                lu2 = Label(win2,image="::tk::icons::information")
+                lu2.place(x=40,y=20)
+                lu3 = Label(win2,text="Issued Successfully")
+                lu3.place(x=90,y=25)
+
+                bu2 = Button(win2,text='Ok',height=1,width=10,font=('veranda',10,''),command=win_destroy)
+                bu2.place(x=180,y=80)
+
+
 
 
 
