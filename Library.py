@@ -727,6 +727,7 @@ def Issue():
         Student_Id=dye1.get()
         Course=dye2.get()
         Semester=dy3.get()
+        Total=0
 
 
         if Book_Id=="" or Issue_Id=="" or Issue_Date=="" or Due_Date=="" or Student_Id=="" or Course=="" or Semester=="":
@@ -751,7 +752,6 @@ def Issue():
             Title = ""
             Author = ""
             Edition = 0
-            Total = 0
 
             conn = mysql.connect(host="localhost",user="root",password="",database="library-management-db")
             cursor = conn.cursor()
@@ -889,6 +889,17 @@ def Issue():
                 cursor.execute("INSERT INTO `issue_information`(`Issue ID`, `Std_ID`, `Book ID`, `From Date`, `To Date`) VALUES( '"+Issue_Id+"','"+Student_Id+"','"+Book_Id+"','"+Issue_Date+"','"+Due_Date+"')")
                 cursor.execute("commit")
                 cursor.close()
+
+                Total=Total-1
+                Total=str(Total)
+
+
+                conn = mysql.connect(host="localhost",user="root",password="",database="library-management-db")
+                cursor = conn.cursor()
+                cursor.execute("UPDATE `book_details` SET `Total`='"+Total+"'WHERE `Book ID`='" + Book_Id + "'")
+                cursor.execute("commit")
+                cursor.close()
+
                 win2 = Toplevel(win)
                 win2.title("Issue Books")
                 win2.resizable(False,False)
@@ -901,8 +912,6 @@ def Issue():
 
                 bu2 = Button(win2,text='Ok',height=1,width=10,font=('veranda',10,''),command=win_destroy)
                 bu2.place(x=180,y=80)
-
-
 
 
 
@@ -1004,7 +1013,29 @@ def Issue():
 
 
 def Return():
-    print(9)
+    f2 = Frame(bg="#8fbcbc")
+    f2.place(x=0,y=0,width=990,height=650)
+
+    f3 = Frame(f2,bg="#396060")
+    f3.place(x=0,y=0,width=990,height=90)
+
+    l = Label(f3,text="Pikachu Library",font=('veranda',45,'bold'),bg='#396060',fg='#F5FFFA')
+    l.place(x=280,y=5)
+
+    wh = Frame(f2,bg="#F5FFFA")
+    wh.place(x=0,y=90,width=990,height=30)
+
+    f4 = Frame(f2,bg="#F5FFFA")
+    f4.place(x=200,y=200,width=600,height=250)
+
+    f5 = Frame(f4,bg="#396060")
+    f5.place(x=0,y=0,width=600,height=50)
+
+    l1 = Label(f5,text="Return Books",font=('veranda',25,'bold'),bg="#396060",fg='#F5FFFA')
+    l1.place(x=185,y=2)
+
+
+
 
 def Update():
     def edit():
