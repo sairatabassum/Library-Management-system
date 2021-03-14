@@ -1013,6 +1013,84 @@ def Issue():
 
 
 def Return():
+    def re():
+        def win_destroy():
+            win2.destroy()
+
+        isu=dy1.get()
+        flg=0
+        Book_ID=0
+        Due_Date=""
+        Total=0
+
+        conn = mysql.connect(host="localhost",user="root",password="",database="library-management-db")
+        cursor = conn.cursor()
+        cursor.execute("SELECT `Issue ID`, `Book ID`,`To Date` FROM `issue_information` WHERE `Issue ID`=" + isu)
+
+        for (I,B,D) in cursor:
+            if str(I) == str(isu):
+                flg=1
+                Book_ID=B
+                Due_Date=D
+                break
+
+        cursor.close()
+
+        if flg==0:
+            win2 = Toplevel(win)
+            win2.title("Error")
+            win2.resizable(False,False)
+            win2.geometry("300x120+500+320")
+
+            Lu1 = Label(win2,image="::tk::icons::error")
+            Lu1.place(x=40,y=20)
+            Lu2 = Label(win2,text="Issue ID is not found")
+            Lu2.place(x=90,y=25)
+
+            B1 = Button(win2,text='Ok',height=1,width=10,font=('veranda',10,''),command=win_destroy)
+            B1.place(x=180,y=80)
+            win2.mainloop()
+        else:
+            conn = mysql.connect(host="localhost",user="root",password="",database="library-management-db")
+            cursor = conn.cursor()
+            cursor.execute("DELETE FROM `issue_information` WHERE `Issue ID`='" + isu + "'")
+            cursor.execute("commit")
+            cursor.close()
+
+            Book_ID=str(Book_ID)
+
+            conn = mysql.connect(host="localhost",user="root",password="",database="library-management-db")
+            cursor = conn.cursor()
+            cursor.execute("SELECT `Book ID` ,`Total` FROM `book_details` where `Book ID`='" +Book_ID+"'")
+
+            for (BI,TO)in cursor:
+                Total=TO
+            cursor.close()
+
+            Total = Total + 1
+            Total = str(Total)
+
+            conn = mysql.connect(host="localhost",user="root",password="",database="library-management-db")
+            cursor = conn.cursor()
+            cursor.execute("UPDATE `book_details` SET `Total`='" + Total + "'WHERE `Book ID`='" + Book_ID + "'")
+            cursor.execute("commit")
+            cursor.close()
+
+            cnt = 0
+            a = 0;b=0;c=0;d=0;e=0;f=0
+            x = Due_Date.split('/')
+            for (i) in x:
+                if cnt == 0:
+                    a = int(i)
+                elif cnt == 1:
+                    b = int(i)
+                else:
+                    c = int(i)
+                cnt = cnt + 1
+            cnt=0
+
+
+
     f2 = Frame(bg="#8fbcbc")
     f2.place(x=0,y=0,width=990,height=650)
 
@@ -1033,6 +1111,22 @@ def Return():
 
     l1 = Label(f5,text="Return Books",font=('veranda',25,'bold'),bg="#396060",fg='#F5FFFA')
     l1.place(x=185,y=2)
+
+    Retrn = StringVar()
+    d_ID = Label(f4,text="Issue ID",font=('veranda',10,'bold'),bg="#F5FFFA")
+    d_ID.place(x=60,y=100)
+
+    dy1 = Entry(f4,textvariable=Retrn,bd=1,font=('Arial',15,'bold'),border=2,bg="white",relief=GROOVE)
+    dy1.place(x=180,y=100,height=25,width=300)
+
+    De = Button(f4,text='Return',height=1,width=25,font=('veranda',12,'bold'),bg="#396060",fg="white",command=re)
+    De.place(x=190,y=160)
+
+    De1 = Button(f2,text='<Back',height=1,width=10,font=('veranda',12,'bold'),bg="#396060",fg="white",
+                 command=back_dashboard)
+    De1.place(x=10,y=140)
+
+    dy1.focus()
 
 
 
