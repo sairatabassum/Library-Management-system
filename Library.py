@@ -713,147 +713,9 @@ def Search():
 
 def Issue():
 
-    flag1=0
-    flag2=0
-
-    def b_id_search():
-
-        def win_destroy():
-            win2.destroy()
-        Book_Id=dy1.get()
-
-        B_Id=0
-        Title=""
-        Author=""
-        Edition=0
-        Total=0
-
-        conn = mysql.connect(host="localhost",user="root",password="",database="library-management-db")
-        cursor = conn.cursor()
-        cursor.execute("SELECT `Book ID` ,`Title` ,`Author`, `Edition`,`Total` FROM `book_details` where `Book ID`=" + Book_Id)
-
-        for (B,T,A,E,TO) in cursor:
-            B_Id=B
-            Title=T
-            Author=A
-            Edition=E
-            Total=TO
-
-        cursor.close()
-
-
-
-
-        if str(B_Id)!=str(Book_Id) or Total==0:
-            flg1=0
-            win2 = Toplevel(win)
-            win2.title("Search")
-            win2.resizable(False,False)
-            win2.geometry("300x120+500+320")
-
-            Lu1 = Label(win2,image="::tk::icons::warning")
-            Lu1.place(x=40,y=20)
-            Lu2 = Label(win2,text="Your Book ID is not found")
-            Lu2.place(x=90,y=25)
-
-            B1 = Button(win2,text='Ok',height=1,width=10,font=('veranda',10,''),command=win_destroy)
-            B1.place(x=180,y=80)
-            win2.mainloop()
-
-        else:
-            flag1=1
-
-            op1 = Label(f4,text="Book ID:",font=('veranda',12,'bold'),bg="#8B0000",fg="#FFF8DC")
-            op1.place(x=10,y=250)
-
-            ope1 = Label(f4,text=Book_Id,font=('veranda',12,'bold'),bg="#8B0000",fg="#FFF8DC")
-            ope1.place(x=100,y=250)
-
-            op2 = Label(f4,text="Title:",font=('veranda',12,'bold'),bg="#8B0000",fg="#FFF8DC")
-            op2.place(x=10,y=280)
-
-            ope2 = Label(f4,text=Title,font=('veranda',12,'bold'),bg="#8B0000",fg="#FFF8DC")
-            ope2.place(x=100,y=280)
-
-            op3 = Label(f4,text="Author:",font=('veranda',12,'bold'),bg="#8B0000",fg="#FFF8DC")
-            op3.place(x=10,y=310)
-
-            ope3 = Label(f4,text=Author,font=('veranda',12,'bold'),bg="#8B0000",fg="#FFF8DC")
-            ope3.place(x=100,y=310)
-
-            op4 = Label(f4,text="Edition:",font=('veranda',12,'bold'),bg="#8B0000",fg="#FFF8DC")
-            op4.place(x=10,y=340)
-
-            ope4 = Label(f4,text=Edition,font=('veranda',12,'bold'),bg="#8B0000",fg="#FFF8DC")
-            ope4.place(x=100,y=340)
-
-    def s_id_search():
-        def win_destroy():
-            win2.destroy()
-
-        Student_Id=dye1.get()
-        Name=""
-        Department=""
-        Year=0
-        Student_ID=0
-
-        conn = mysql.connect(host="localhost",user="root",password="",database="library-management-db")
-        cursor = conn.cursor()
-        cursor.execute("SELECT `Std_ID`, `Name`, `Department`, `Year` FROM `student_information` WHERE `Std_ID`="+ Student_Id)
-
-        for(S,N,D,Y) in cursor:
-            Student_ID=S
-            Name=N
-            Department=D
-            Year=Y
-        cursor.close()
-
-
-        if str(Student_Id) != str(Student_ID):
-            flg2=0
-            win2 = Toplevel(win)
-            win2.title("Search")
-            win2.resizable(False,False)
-            win2.geometry("300x120+500+320")
-
-            Lu1 = Label(win2,image="::tk::icons::warning")
-            Lu1.place(x=40,y=20)
-            Lu2 = Label(win2,text="Student Id is incorrect")
-            Lu2.place(x=90,y=25)
-
-            B1 = Button(win2,text='Ok',height=1,width=10,font=('veranda',10,''),command=win_destroy)
-            B1.place(x=180,y=80)
-            win2.mainloop()
-
-        else:
-            flag2=1
-
-            op1 = Label(f5,text="Student ID:",font=('veranda',12,'bold'),bg="#8B0000",fg="#FFF8DC")
-            op1.place(x=10,y=250)
-
-            ope1 = Label(f5,text=Student_Id,font=('veranda',12,'bold'),bg="#8B0000",fg="#FFF8DC")
-            ope1.place(x=120,y=250)
-
-            op2 = Label(f5,text="Name:",font=('veranda',12,'bold'),bg="#8B0000",fg="#FFF8DC")
-            op2.place(x=10,y=280)
-
-            ope2 = Label(f5,text=Name,font=('veranda',12,'bold'),bg="#8B0000",fg="#FFF8DC")
-            ope2.place(x=120,y=280)
-
-            op3 = Label(f5,text="Department:",font=('veranda',12,'bold'),bg="#8B0000",fg="#FFF8DC")
-            op3.place(x=10,y=310)
-
-            ope3 = Label(f5,text=Department,font=('veranda',12,'bold'),bg="#8B0000",fg="#FFF8DC")
-            ope3.place(x=120,y=310)
-
-            op4 = Label(f5,text="Year:",font=('veranda',12,'bold'),bg="#8B0000",fg="#FFF8DC")
-            op4.place(x=10,y=340)
-
-            ope4 = Label(f5,text=Year,font=('veranda',12,'bold'),bg="#8B0000",fg="#FFF8DC")
-            ope4.place(x=120,y=340)
-
-
     def issue_s():
+
+
         def win_destroy():
             win2.destroy()
         Book_Id=dy1.get()
@@ -863,6 +725,9 @@ def Issue():
         Student_Id=dye1.get()
         Course=dye2.get()
         Semester=dy3.get()
+
+
+
 
         if Book_Id=="" or Issue_Id=="" or Issue_Date=="" or Due_Date=="" or Student_Id=="" or Course=="" or Semester=="":
             win2 = Toplevel(win)
@@ -880,7 +745,123 @@ def Issue():
             win2.mainloop()
 
         else:
-            print(9)
+            Book_Id = dy1.get()
+
+            B_Id = 0
+            Title = ""
+            Author = ""
+            Edition = 0
+            Total = 0
+
+            conn = mysql.connect(host="localhost",user="root",password="",database="library-management-db")
+            cursor = conn.cursor()
+            cursor.execute(
+                "SELECT `Book ID` ,`Title` ,`Author`, `Edition`,`Total` FROM `book_details` where `Book ID`=" + Book_Id)
+
+            for (B,T,A,E,TO) in cursor:
+                B_Id = B
+                Title = T
+                Author = A
+                Edition = E
+                Total = TO
+
+            cursor.close()
+
+            if str(B_Id) != str(Book_Id) or Total == 0:
+                frm1 = Frame(f4,bg="#70a9a9",relief=RIDGE,bd=5)
+                frm1.place(x=0,y=240,width=390,height=130)
+                op1 = Label(frm1,text="Your Book ID is not found",font=('veranda',12,'bold'),bg="#70a9a9",fg="red")
+                op1.place(x=80,y=40)
+
+            else:
+                frm1 = Frame(f4,bg="#70a9a9",relief=RIDGE,bd=5)
+                frm1.place(x=0,y=240,width=390,height=130)
+
+                op1 = Label(f4,text="Book ID:",font=('veranda',12,'bold'),bg="#70a9a9",fg="#B22222")
+                op1.place(x=10,y=250)
+
+                ope1 = Label(f4,text=Book_Id,font=('veranda',12,'bold'),bg="#70a9a9",fg="#B22222")
+                ope1.place(x=100,y=250)
+
+                op2 = Label(f4,text="Title:",font=('veranda',12,'bold'),bg="#70a9a9",fg="#B22222")
+                op2.place(x=10,y=280)
+
+                ope2 = Label(f4,text=Title,font=('veranda',12,'bold'),bg="#70a9a9",fg="#B22222")
+                ope2.place(x=100,y=280)
+
+                op3 = Label(f4,text="Author:",font=('veranda',12,'bold'),bg="#70a9a9",fg="#B22222")
+                op3.place(x=10,y=310)
+
+                ope3 = Label(f4,text=Author,font=('veranda',12,'bold'),bg="#70a9a9",fg="#B22222")
+                ope3.place(x=100,y=310)
+
+                op4 = Label(f4,text="Edition:",font=('veranda',12,'bold'),bg="#70a9a9",fg="#B22222")
+                op4.place(x=10,y=340)
+
+                ope4 = Label(f4,text=Edition,font=('veranda',12,'bold'),bg="#70a9a9",fg="#B22222")
+                ope4.place(x=100,y=340)
+
+            Student_Id = dye1.get()
+            Name = ""
+            Department = ""
+            Year = 0
+            Student_ID = 0
+
+            conn = mysql.connect(host="localhost",user="root",password="",database="library-management-db")
+            cursor = conn.cursor()
+            cursor.execute(
+                "SELECT `Std_ID`, `Name`, `Department`, `Year` FROM `student_information` WHERE `Std_ID`=" + Student_Id)
+
+            for (S,N,D,Y) in cursor:
+                Student_ID = S
+                Name = N
+                Department = D
+                Year = Y
+            cursor.close()
+
+            if str(Student_Id) != str(Student_ID):
+
+                win2 = Toplevel(win)
+                win2.title("Search")
+                win2.resizable(False,False)
+                win2.geometry("300x120+500+320")
+
+                Lu1 = Label(win2,image="::tk::icons::warning")
+                Lu1.place(x=40,y=20)
+                Lu2 = Label(win2,text="Student Id is incorrect")
+                Lu2.place(x=90,y=25)
+
+                B1 = Button(win2,text='Ok',height=1,width=10,font=('veranda',10,''),command=win_destroy)
+                B1.place(x=180,y=80)
+                win2.mainloop()
+
+            else:
+
+                op1 = Label(f5,text="Student ID:",font=('veranda',12,'bold'),bg="#8fbcbc")
+                op1.place(x=10,y=250)
+
+                ope1 = Label(f5,text=Student_Id,font=('veranda',12,'bold'),bg="white",fg="black")
+                ope1.place(x=120,y=250)
+
+                op2 = Label(f5,text="Name:",font=('veranda',12,'bold'),bg="#8fbcbc")
+                op2.place(x=10,y=280)
+
+                ope2 = Label(f5,text=Name,font=('veranda',12,'bold'),bg="white",fg="black")
+                ope2.place(x=120,y=280)
+
+                op3 = Label(f5,text="Department:",font=('veranda',12,'bold'),bg="#8fbcbc")
+                op3.place(x=10,y=310)
+
+                ope3 = Label(f5,text=Department,font=('veranda',12,'bold'),bg="white",fg="black")
+                ope3.place(x=120,y=310)
+
+                op4 = Label(f5,text="Year:",font=('veranda',12,'bold'),bg="#8fbcbc")
+                op4.place(x=10,y=340)
+
+                ope4 = Label(f5,text=Year,font=('veranda',12,'bold'),bg="white",fg="black")
+                ope4.place(x=120,y=340)
+
+
 
 
     f2 = Frame(bg="#8fbcbc")
@@ -918,8 +899,6 @@ def Issue():
                 highlightcolor="black",highlightthickness=1)
     dy1.place(x=100,y=35,height=28,width=170)
 
-    De = Button(f4,text='Search',height=1,width=8,font=('veranda',12,'bold'),bg="Black",fg="white",command=b_id_search)
-    De.place(x=280,y=32)
 
     lab3 = Label(f4,text="Issue ID",font=('veranda',12,'bold'),bg="#8fbcbc")
     lab3.place(x=10,y=100)
@@ -956,8 +935,6 @@ def Issue():
                  highlightcolor="black",highlightthickness=1)
     dye1.place(x=100,y=35,height=28,width=170)
 
-    Dee = Button(f5,text='Search',height=1,width=8,font=('veranda',12,'bold'),bg="Black",fg="white",command=s_id_search)
-    Dee.place(x=280,y=32)
 
     labe3 = Label(f5,text="Course",font=('veranda',12,'bold'),bg="#8fbcbc")
     labe3.place(x=10,y=100)
