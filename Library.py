@@ -1089,6 +1089,52 @@ def Return():
                 cnt = cnt + 1
             cnt=0
 
+            cal1 = DateEntry(f4,width=25,background='black',
+                         foreground='white',borderwidth=2)
+            cal1.place(x=100,y=1500)
+
+            Current_Date=cal1.get()
+            y = Current_Date.split('/')
+            for (i) in y:
+                if cnt == 0:
+                    d = int(i)
+                elif cnt == 1:
+                    e= int(i)
+                else:
+                    f = int(i)
+                cnt = cnt + 1
+            fee=0
+            
+            if b==c and c==f and a<d:
+                fee=60
+            elif c<f:
+                fee=60
+            elif b<e and c<=f:
+                fee=60
+            win2 = Toplevel(win)
+            win2.title("Return Book")
+            win2.resizable(False,False)
+            win2.geometry("340x250+550+180")
+            win2.configure(bg="#262626")
+
+            lt = Label(win2,text="Late Fee: "+str(fee),font=('veranda',15,'bold'),bg='#666666',fg='#F5FFFA')
+            lt.place(x=110,y=70)
+
+            lt1 = Label(win2,text="Return Book Successfully",font=('veranda',15,'bold'),bg='#666666',fg='#F5FFFA')
+            lt1.place(x=50,y=110)
+
+
+
+            bu4 = Button(win2,text="OK",font=('veranda',12,'bold'),activebackground="#262626",bg="#666666",
+                         fg="#e60000",relief=RAISED,command=win_destroy)
+            bu4.place(x=140,y=210,height=26,width=70)
+
+            win2.mainloop()
+
+
+
+
+
 
 
     f2 = Frame(bg="#8fbcbc")
