@@ -7,12 +7,12 @@ from tkcalendar import DateEntry
 
 
 
-#----Exit Window----
+#---Exit Window---
 def window():
     win.destroy()
 
 
-#------Window----
+#---Window---
 win=Tk()
 win.title("Library System")
 win.geometry('990x650+200+15')
@@ -20,9 +20,11 @@ win.resizable(False,False)
 win.config(bg="#70a9a9")
 win.iconbitmap(r'bookshelf+library+icon.ico')
 
+#---Back Dashboard---
 def back_dashboard():
     dashboard()
 
+#---Add Book---
 def Add_Book():
     def add_details():
         def win_destroy():
@@ -46,7 +48,7 @@ def Add_Book():
             win2 = Toplevel(win)
             win2.title("Insert Status")
             win2.resizable(False,False)
-            win2.geometry("300x120+500+320")
+            win2.geometry("300x120+500+120")
 
             lu1 = Label(win2,image="::tk::icons::error")
             lu1.place(x=40,y=20)
@@ -172,7 +174,7 @@ def Add_Book():
 
     by1.focus()
 
-
+#---Delete Book---
 def Delete():
     def DEL():
         def win_destroy():
@@ -337,6 +339,7 @@ def Delete():
 
     dy1.focus()
 
+#---Views Book with Search---
 def Views():
     def all():
         book_table.delete(*book_table.get_children())
@@ -487,7 +490,7 @@ def Views():
                  command=back_dashboard,relief=FLAT,activebackground="#F5FFFA")
     Dep.place(x=0,y=92)
 
-
+#---Search by Book Name & ID---
 def Search():
     def SEARCH():
         def win_destroy():
@@ -710,7 +713,7 @@ def Search():
 
 
 
-
+#---Issue Book---
 def Issue():
 
     def issue_s():
@@ -1011,7 +1014,7 @@ def Issue():
 
     dy1.focus()
 
-
+#---Return Book---
 def Return():
     def re():
         def win_destroy():
@@ -1176,7 +1179,7 @@ def Return():
 
 
 
-
+#---Update Book Details---
 def Update():
     def edit():
         def win_destroy():
@@ -1381,14 +1384,15 @@ def Update():
 
     dy1.focus()
 
-
+#---Log Out from Program---
 def Log_out():
     win.destroy()
 
-
+#---Back to Log In---
 def Back():
     home()
 
+#---Dashboard---
 def dashboard():
     # ----Frame2----
 
@@ -1427,6 +1431,7 @@ def dashboard():
     back = Button(f2,text='Back',height=1,width=10,font=('veranda',10,'bold'),bg="#d62929",fg="BLACK",relief=SOLID,bd=5,command=Back)
     back.place(x=30,y=580)
 
+#---Log In & Sign Up---
 def home():
 
     def sign_up():
