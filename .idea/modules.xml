@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../Library-Management-System/.idea/Library-Management-System.iml" filepath="$PROJECT_DIR$/../Library-Management-System/.idea/Library-Management-System.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/Library_System.iml" filepath="$PROJECT_DIR$/.idea/Library_System.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../SQlite3_with_Python3/.idea/SQlite3_with_Python3.iml" filepath="$PROJECT_DIR$/../SQlite3_with_Python3/.idea/SQlite3_with_Python3.iml" />
     </modules>
   </component>
 </project>
