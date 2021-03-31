@@ -1593,7 +1593,11 @@ def home():
 
                 if f == 0:
                     np = Label(win1,text='User Name is not found',font=('Arial',10,'bold'),fg='#B22222')
-                    np.place(x=200,y=129)
+                    np.place(x=180,y=129)
+
+                elif len(pas)<8:
+                    np = Label(win1,text='Password must be at least 8 characters',font=('Arial',10,'bold'),fg='#B22222')
+                    np.place(x=180,y=185)
 
                 else:
                     conn = mysql.connect(host="localhost",user="root",password="",database="library-management-db")
@@ -1615,6 +1619,18 @@ def home():
                     bu2 = Button(win3,text='Ok',height=1,width=10,font=('veranda',10,''),command=end)
                     bu2.place(x=180,y=80)
                     win3.mainloop()
+
+                space=" "
+
+                if f == 1:
+                    np = Label(win1,text=100*space)
+                    np.place(x=180,y=129)
+
+                elif len(pas)>=8:
+                    np = Label(win1,text=100*space)
+                    np.place(x=180,y=185)
+
+
 
 
 
@@ -1641,6 +1657,8 @@ def home():
 
         but = Button(win1,text='Submit',height=1,width=20,font=('veranda',12,'bold'),fg="#F5FFFA",bg="#396060",command=submit)
         but.place(x=150,y=230)
+
+        by.focus()
 
 
 
