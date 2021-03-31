@@ -3,5 +3,8 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../SQlite3_with_Python3" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../Voice-Assistant-ChatBot" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../pythonProject" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../untitled8" vcs="Git" />
   </component>
 </project>

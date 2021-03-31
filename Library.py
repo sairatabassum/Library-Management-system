@@ -271,7 +271,7 @@ def Delete():
             else:
                 conn = mysql.connect(host="localhost",user="root",password="",database="library-management-db")
                 cursor = conn.cursor()
-                cursor.execute("DELETE FROM `book_details` WHERE `Book ID`='" + B_Name + "'")
+                cursor.execute("DELETE FROM `book_details` WHERE `Title`='" + B_Name + "'")
                 cursor.execute("commit")
                 cursor.close()
 
