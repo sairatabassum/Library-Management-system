@@ -251,7 +251,9 @@ def Delete():
             for (I,T) in cursor:
                 if T.upper() == B_Name.upper():
                     flg_name = 1
+                    #print(T.upper(),B_Name)
             cursor.close()
+
 
             if flg_name == 0:
                 win2 = Toplevel(win)
