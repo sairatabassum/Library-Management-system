@@ -1082,15 +1082,15 @@ def Return():
             cursor.close()
 
             cnt = 0
-            a = 0;b=0;c=0;d=0;e=0;f=0
+            month1=0;date1=0;year1=0;month2=0;date2=0;year2=0
             x = Due_Date.split('/')
             for (i) in x:
                 if cnt == 0:
-                    a = int(i)
+                    month1 = int(i)
                 elif cnt == 1:
-                    b = int(i)
+                    date1 = int(i)
                 else:
-                    c = int(i)
+                     year1= int(i)
                 cnt = cnt + 1
             cnt=0
 
@@ -1102,20 +1102,21 @@ def Return():
             y = Current_Date.split('/')
             for (i) in y:
                 if cnt == 0:
-                    d = int(i)
+                    month2 = int(i)
                 elif cnt == 1:
-                    e= int(i)
+                    date2= int(i)
                 else:
-                    f = int(i)
+                    year2 = int(i)
                 cnt = cnt + 1
             fee=0
             
-            if b==c and c==f and a<d:
+            if month1==month2 and year1==year2 and date1<date2:
                 fee=60
-            elif c<f:
+            elif year1<year2:
                 fee=60
-            elif b<e and c<=f:
+            elif month1<month2 and year1==year2:
                 fee=60
+
             win2 = Toplevel(win)
             win2.title("Return Book")
             win2.resizable(False,False)
