@@ -1479,15 +1479,26 @@ def home():
                         break
                 conn.close()
 
+                space=" "
+
+
+                if f == 0:
+                    np = Label(win1,text=100*space)
+                    np.place(x=180,y=129)
+
+                if len(Password)>=8:
+                    np = Label(win1,text=100*space)
+                    np.place(x=180,y=250)
+
                 if f == 1:
                     np = Label(win1,text='User Name is already exist',font=('Arial',10,'bold'),fg='#B22222')
                     np.place(x=180,y=129)
 
-                elif len(Password)<8:
+                if len(Password)<8:
                     np = Label(win1,text='Password must be at least 8 characters',font=('Arial',10,'bold'),fg='#B22222')
                     np.place(x=180,y=250)
 
-                else:
+                if f!=1 and len(Password)>=8:
                     conn = mysql.connect(host="localhost",user="root",password="",database="library-management-db")
                     cursor = conn.cursor()
                     cursor.execute("INSERT INTO `admin` VALUES ('"+User_Name+"' ,'"+Name+"', '"+Password+"', '"+Email+"')")
@@ -1507,9 +1518,6 @@ def home():
                     bu2 = Button(win3,text='Ok',height=1,width=10,font=('veranda',10,''),command=win2_destroy)
                     bu2.place(x=180,y=80)
                     win3.mainloop()
-
-
-
 
 
         win1=Toplevel(win)
@@ -1591,15 +1599,28 @@ def home():
                         break
                 conn.close()
 
+
+                space=" "
+
+                if f == 1:
+                    np = Label(win1,text=100*space)
+                    np.place(x=180,y=129)
+
+                if len(pas)>=8:
+                    np = Label(win1,text=100*space)
+                    np.place(x=180,y=185)
+
+
+
                 if f == 0:
                     np = Label(win1,text='User Name is not found',font=('Arial',10,'bold'),fg='#B22222')
                     np.place(x=180,y=129)
 
-                elif len(pas)<8:
+                if len(pas)<8:
                     np = Label(win1,text='Password must be at least 8 characters',font=('Arial',10,'bold'),fg='#B22222')
                     np.place(x=180,y=185)
 
-                else:
+                if f==1 and len(pas)>=8:
                     conn = mysql.connect(host="localhost",user="root",password="",database="library-management-db")
                     cursorr = conn.cursor()
                     cursorr.execute("UPDATE admin SET `Password` = '" + pas + "' WHERE `User Name`= '" + user_name +"'")
@@ -1619,17 +1640,6 @@ def home():
                     bu2 = Button(win3,text='Ok',height=1,width=10,font=('veranda',10,''),command=end)
                     bu2.place(x=180,y=80)
                     win3.mainloop()
-
-                space=" "
-
-                if f == 1:
-                    np = Label(win1,text=100*space)
-                    np.place(x=180,y=129)
-
-                elif len(pas)>=8:
-                    np = Label(win1,text=100*space)
-                    np.place(x=180,y=185)
-
 
 
 
