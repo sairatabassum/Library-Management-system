@@ -48,7 +48,7 @@ def Add_Book():
             win2 = Toplevel(win)
             win2.title("Insert Status")
             win2.resizable(False,False)
-            win2.geometry("300x120+500+120")
+            win2.geometry("300x120+500+320")
 
             lu1 = Label(win2,image="::tk::icons::error")
             lu1.place(x=40,y=20)
