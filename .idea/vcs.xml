@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="VcsDirectoryMappings">
-    <mapping directory="" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/../SQlite3_with_Python3" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/../Voice-Assistant-ChatBot" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/../pythonProject" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/../untitled8" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$" vcs="Git" />
   </component>
 </project>

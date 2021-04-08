@@ -6,7 +6,6 @@ from tkcalendar import DateEntry
 
 
 
-
 #---Exit Window---
 def window():
     win.destroy()
@@ -20,7 +19,7 @@ win.resizable(False,False)
 win.config(bg="#70a9a9")
 win.iconbitmap(r'bookshelf+library+icon.ico')
 
-#---Back Dashboard---
+#---Back Dashboard--
 def back_dashboard():
     dashboard()
 
