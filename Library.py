@@ -19,9 +19,13 @@ win.resizable(False,False)
 win.config(bg="#70a9a9")
 win.iconbitmap(r'bookshelf+library+icon.ico')
 
-#---Back Dashboard--
+
+#---Back Dashboard---
 def back_dashboard():
     dashboard()
+
+
+
 
 #---Add Book---
 def Add_Book():
@@ -172,6 +176,9 @@ def Add_Book():
     De1.place(x=10,y=140)
 
     by1.focus()
+
+
+
 
 #---Delete Book---
 def Delete():
@@ -340,6 +347,9 @@ def Delete():
 
     dy1.focus()
 
+
+
+
 #---Views Book with Search---
 def Views():
     def all():
@@ -490,6 +500,9 @@ def Views():
     Dep = Button(f2,text='<Back',height=1,width=8,font=('veranda',12,'bold'),bg="#B0E0E6",fg="RED",
                  command=back_dashboard,relief=FLAT,activebackground="#F5FFFA")
     Dep.place(x=0,y=92)
+
+
+
 
 #---Search by Book Name & ID---
 def Search():
@@ -711,6 +724,7 @@ def Search():
     De1 = Button(f2,text='<Back',height=1,width=10,font=('veranda',12,'bold'),bg="#396060",fg="white",
                  command=back_dashboard)
     De1.place(x=10,y=140)
+
 
 
 
@@ -1015,6 +1029,9 @@ def Issue():
 
     dy1.focus()
 
+
+
+
 #---Return Book---
 def Return():
     def re():
@@ -1178,6 +1195,7 @@ def Return():
     De1.place(x=10,y=140)
 
     dy1.focus()
+
 
 
 
@@ -1386,13 +1404,22 @@ def Update():
 
     dy1.focus()
 
+
+
+
 #---Log Out from Program---
 def Log_out():
     win.destroy()
 
+
+
+
 #---Back to Log In---
 def Back():
     home()
+
+
+
 
 #---Dashboard---
 def dashboard():
@@ -1432,6 +1459,9 @@ def dashboard():
 
     back = Button(f2,text='Back',height=1,width=10,font=('veranda',10,'bold'),bg="#d62929",fg="BLACK",relief=SOLID,bd=5,command=Back)
     back.place(x=30,y=580)
+
+
+
 
 #---Log In & Sign Up---
 def home():
@@ -1687,7 +1717,7 @@ def home():
         password=b2.get()
 
 
-        if(username=="" or password==""):
+        if(username=="" or  password=="" ):
             messagebox.showinfo("Insert Status","All Fields are required")
         else:
             try:
