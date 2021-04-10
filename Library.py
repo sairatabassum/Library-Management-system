@@ -1201,9 +1201,11 @@ def Return():
 
 #---Update Book Details---
 def Update():
+
     def edit():
         def win_destroy():
             win2.destroy()
+
 
         Title_d = ""
         Author_d = ""
@@ -1211,7 +1213,9 @@ def Update():
         Edition_d = 0
         B_ID = dy1.get()
 
+
         if B_ID == "":
+
             win2 = Toplevel(win)
             win2.title("Insert ID")
             win2.resizable(False,False)
@@ -1225,21 +1229,28 @@ def Update():
             bu1 = Button(win2,text='Ok',height=1,width=10,font=('veranda',10,''),command=win_destroy)
             bu1.place(x=180,y=80)
             win2.mainloop()
+
         else:
+            #---flg to check the Book_ID is found or not
             flg = 0
             conn = mysql.connect(host="localhost",user="root",password="",database="library-management-db")
             cursor = conn.cursor()
             cursor.execute(
                 "SELECT `Book ID` ,`Title` ,`Author`,`Total` , `Edition` FROM `book_details` where `Book ID`=" + B_ID)
+
+
             for (I,T,A,total,ED) in cursor:
+
                 if str(I) == (B_ID):
                     flg = 1
                     Title_d = T
                     Author_d = A
                     Total_d = total
                     Edition_d = ED
+                    break
 
             cursor.close()
+
             if flg == 0:
                 win2 = Toplevel(win)
                 win2.title("Search")
@@ -1254,7 +1265,9 @@ def Update():
                 B1 = Button(win2,text='Ok',height=1,width=10,font=('veranda',10,''),command=win_destroy)
                 B1.place(x=180,y=80)
                 win2.mainloop()
+
             else:
+
                 def up():
                     def wi_destroy():
                         win2.destroy()
