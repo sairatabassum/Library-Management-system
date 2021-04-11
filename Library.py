@@ -352,6 +352,7 @@ def Delete():
 
 #---Views Book with Search---
 def Views():
+
     def all():
         book_table.delete(*book_table.get_children())
 
@@ -363,6 +364,7 @@ def Views():
             book_table.insert('',END,values=(B,T,A,E,TO))
 
     def Search():
+
         def win_destroy():
             win2.destroy()
 
@@ -370,6 +372,7 @@ def Views():
         gi = dy1.get()
 
         if g == "" or gi == "":
+
             win2 = Toplevel(win)
             win2.title("Insert Status")
             win2.resizable(False,False)
@@ -383,7 +386,9 @@ def Views():
             bu1 = Button(win2,text='Ok',height=1,width=10,font=('veranda',10,''),command=win_destroy)
             bu1.place(x=180,y=80)
             win2.mainloop()
+
         elif g == "Book ID":
+
             book_table.delete(*book_table.get_children())
 
             conn = mysql.connect(host="localhost",user="root",password="",database="library-management-db")
@@ -406,6 +411,7 @@ def Views():
                 book_table.insert('',END,values=(B,T,A,E,TO))
 
         else:
+
             book_table.delete(*book_table.get_children())
 
             conn = mysql.connect(host="localhost",user="root",password="",database="library-management-db")
@@ -1000,7 +1006,7 @@ def Issue():
                      foreground='white',borderwidth=2)
     cal2.place(x=100,y=200)
 
-    # -----f5 Issue Books----
+    # -----f5 Student Details----
 
     std_id = StringVar()
     f_name = StringVar()
@@ -1028,6 +1034,7 @@ def Issue():
                 highlightcolor="black",highlightthickness=1)
     dy3.place(x=100,y=170,height=28,width=170)
 
+    #---Issue and Back Button
     Dui = Button(f2,text='Issue',height=1,width=8,font=('veranda',12,'bold'),bg="Black",fg="white",command=issue_s)
     Dui.place(x=150,y=540)
 
