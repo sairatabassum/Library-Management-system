@@ -1321,7 +1321,7 @@ def Update():
                         conn = mysql.connect(host="localhost",user="root",password="",database="library-management-db")
                         cursor = conn.cursor()
                         cursor.execute(
-                            "UPDATE `book_details` SET `Book ID`= '" + B_ID + "' ,`Title`=' " + by2.get() + "',`Author`='" + by3.get() + "',`Edition`='" + by4.get() + "',`Total` ='" + by5.get() + "' WHERE `Book ID`='" + B_ID + "'")
+                            "UPDATE `book_details` SET `Book ID`= '" + B_ID + "' ,`Title`='" + by2.get() + "',`Author`='" + by3.get() + "',`Edition`='" + by4.get() + "',`Total` ='" + by5.get() + "' WHERE `Book ID`='" + B_ID + "'")
                         cursor.execute("commit")
                         cursor.close()
 
