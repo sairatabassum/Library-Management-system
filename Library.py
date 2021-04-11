@@ -749,6 +749,7 @@ def Issue():
 
         flg1=0
         flg2=0
+
         def win_destroy():
             win2.destroy()
 
@@ -763,6 +764,7 @@ def Issue():
 
 
         if Book_Id=="" or Issue_Id=="" or Issue_Date=="" or Due_Date=="" or Student_Id=="" or Course=="" or Semester=="":
+
             win2 = Toplevel(win)
             win2.title("Insert Status")
             win2.resizable(False,False)
@@ -800,12 +802,14 @@ def Issue():
             cursor.close()
 
             if str(B_Id) != str(Book_Id) or Total == 0:
+
                 frm1 = Frame(f4,bg="#70a9a9",relief=RIDGE,bd=5)
                 frm1.place(x=0,y=240,width=390,height=130)
                 op1 = Label(frm1,text="Your Book ID is not found",font=('veranda',12,'bold'),bg="#70a9a9",fg="red")
                 op1.place(x=80,y=40)
 
             else:
+
                 flg1=1
                 frm1 = Frame(f4,bg="#70a9a9",relief=RIDGE,bd=5)
                 frm1.place(x=0,y=240,width=390,height=130)
