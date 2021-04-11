@@ -506,6 +506,7 @@ def Views():
 
 #---Search by Book Name & ID---
 def Search():
+
     def SEARCH():
         def win_destroy():
             win2.destroy()
@@ -536,6 +537,7 @@ def Search():
             author = ""
             Total = 0
             flg = 0
+
             conn = mysql.connect(host="localhost",user="root",password="",database="library-management-db")
             cursor = conn.cursor()
             cursor.execute("SELECT `Book ID` ,`Title` ,`Author`,`Total` FROM `book_details` where `Book ID`=" + B_ID)
@@ -548,6 +550,7 @@ def Search():
 
             cursor.close()
             if flg == 0 or Total == 0:
+
                 win2 = Toplevel(win)
                 win2.title("Search")
                 win2.resizable(False,False)
@@ -561,7 +564,9 @@ def Search():
                 B1 = Button(win2,text='Ok',height=1,width=10,font=('veranda',10,''),command=win_destroy)
                 B1.place(x=180,y=80)
                 win2.mainloop()
+
             else:
+
                 win_in = Toplevel(win)
                 win_in.title("Search Book")
                 win_in.resizable(False,False)
@@ -603,6 +608,7 @@ def Search():
             cursor = conn.cursor()
             cursor.execute(
                 "SELECT count(`Book ID`) ,`Total` FROM `book_details` where `Title` like '%" + B_name + "%' and `Total` !=0")
+
             cnt = 0
             for (I,T) in cursor:
                 cnt = I
@@ -625,6 +631,7 @@ def Search():
                 win2.mainloop()
 
             else:
+
                 win_in = Toplevel(win)
                 win_in.title("Search Book")
                 win_in.resizable(False,False)
@@ -666,6 +673,7 @@ def Search():
 
                 book_table['show'] = 'headings'
                 book_table.place(x=0,y=0,height=200,width=420)
+
 
                 conn = mysql.connect(host="localhost",user="root",password="",database="library-management-db")
                 cursor = conn.cursor()
