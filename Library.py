@@ -6,6 +6,8 @@ from tkcalendar import DateEntry
 
 
 
+
+
 #---Exit Window---
 def window():
     win.destroy()
@@ -1608,7 +1610,7 @@ def home():
 
         l4 = Label(win1,text="Password:",font=('veranda',10,'bold'))
         l4.place(x=60,y=220)
-        by3 = Entry(win1,textvariable=si3,bd=1,font=('Arial',15,'bold'))
+        by3 = Entry(win1,textvariable=si3,bd=1,font=('Arial',15,'bold'),show="*")
         by3.place(x=180,y=220,height=25,width=200)
 
         l5 = Label(win1,text="Email:",font=('veranda',10,'bold'))
@@ -1724,7 +1726,7 @@ def home():
 
         l3 = Label(win1,text="New Password:",font=('veranda',10,'bold'))
         l3.place(x=60,y=160)
-        by2 = Entry(win1,textvariable=si2,bd=1,font=('Arial',15,'bold'))
+        by2 = Entry(win1,textvariable=si2,bd=1,font=('Arial',15,'bold'),show="*")
         by2.place(x=180,y=160,height=25,width=200)
 
         but = Button(win1,text='Submit',height=1,width=20,font=('veranda',12,'bold'),fg="#F5FFFA",bg="#396060",command=submit)
@@ -1796,7 +1798,7 @@ def home():
 
     l2 = Label(frame1,text="Password",font=('veranda',20,'bold'),fg='#F5FFFA',bg='#396060')
     l2.place(x=5,y=90)
-    b2 = Entry(frame1,textvariable=s2,bd=5,font=('Arial',15,'bold'),bg="#e6e6e6")
+    b2 = Entry(frame1,textvariable=s2,bd=5,font=('Arial',15,'bold'),bg="#e6e6e6",show="*")
     b2.place(x=200,y=90,height=35,width=420)
 
     # ----3 Buttons----
