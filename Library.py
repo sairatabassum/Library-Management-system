@@ -13,7 +13,7 @@ def window():
     win.destroy()
 
 
-#---Window----
+#---Window---
 win=Tk()
 win.title("Library System")
 win.geometry('990x650+200+15')
